@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bristol/main/json-structure/university-of-bristol-research-output-structure.json",
+  "name": "ResearchOutput",
+  "type": "object",
+  "description": "JSON Structure for a Pure ResearchOutput (research publication) at the University of Bristol Research Portal.",
+  "properties": {
+    "pureId": { "type": "int64" },
+    "uuid": { "type": "string" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" },
+    "portalUrl": { "type": "string" },
+    "version": { "type": "string" },
+    "title": {
+      "type": "object",
+      "properties": { "value": { "type": "string" } }
+    },
+    "type": { "$ref": "#/definitions/ClassificationRef" },
+    "category": { "$ref": "#/definitions/ClassificationRef" },
+    "language": { "$ref": "#/definitions/ClassificationRef" },
+    "peerReview": { "type": "boolean" },
+    "submissionYear": { "type": "int32" },
+    "totalNumberOfContributors": { "type": "int32" },
+    "typeDiscriminator": { "type": "string" }
+  },
+  "required": ["title", "type", "category", "typeDiscriminator"],
+  "definitions": {
+    "ClassificationRef": {
+      "type": "object",
+      "properties": {
+        "uri": { "type": "string" },
+        "term": { "type": "object" }
+      },
+      "required": ["uri"]
+    }
+  }
+}

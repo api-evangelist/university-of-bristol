@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bristol/main/json-structure/university-of-bristol-dataset-structure.json",
+  "name": "DataSet",
+  "type": "object",
+  "description": "JSON Structure for a Pure DataSet (research dataset) at the University of Bristol Research Portal.",
+  "properties": {
+    "pureId": { "type": "int64" },
+    "uuid": { "type": "string" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" },
+    "portalUrl": { "type": "string" },
+    "version": { "type": "string" },
+    "title": { "type": "object" },
+    "type": { "$ref": "#/definitions/ClassificationRef" },
+    "license": { "$ref": "#/definitions/ClassificationRef" },
+    "totalNumberOfAuthors": { "type": "int32" },
+    "openAireCompliant": { "type": "boolean" }
+  },
+  "required": ["title", "type"],
+  "definitions": {
+    "ClassificationRef": {
+      "type": "object",
+      "properties": {
+        "uri": { "type": "string" },
+        "term": { "type": "object" }
+      },
+      "required": ["uri"]
+    }
+  }
+}

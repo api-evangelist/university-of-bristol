@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "uob": "https://research-information.bris.ac.uk/vocab#",
+    "@vocab": "https://research-information.bris.ac.uk/vocab#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "uuid": "schema:identifier",
+    "portalUrl": { "@id": "schema:url", "@type": "@id" },
+    "createdDate": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "modifiedDate": { "@id": "schema:dateModified", "@type": "schema:DateTime" },
+    "orcid": { "@id": "schema:identifier", "@type": "@id" },
+    "ResearchOutput": "schema:ScholarlyArticle",
+    "Person": "schema:Person",
+    "Project": "schema:ResearchProject",
+    "DataSet": "schema:Dataset",
+    "Organization": "schema:CollegeOrUniversity",
+    "title": "schema:name",
+    "type": "schema:additionalType",
+    "category": "uob:category",
+    "language": "schema:inLanguage",
+    "peerReview": "uob:peerReviewed",
+    "submissionYear": "schema:datePublished",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "license": "schema:license",
+    "publisher": "schema:publisher",
+    "items": "schema:itemListElement",
+    "count": "schema:numberOfItems",
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@context": {
+        "name": "schema:name",
+        "url": "schema:url"
+      }
+    }
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "University of Bristol",
+  "url": "https://www.bristol.ac.uk/"
+}

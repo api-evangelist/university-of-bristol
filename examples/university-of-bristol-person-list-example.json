@@ -1,0 +1,32 @@
+{
+  "count": 1,
+  "pageInformation": {
+    "offset": 0,
+    "size": 10
+  },
+  "items": [
+    {
+      "pureId": 111222333,
+      "uuid": "11111111-1111-1111-1111-111111111111",
+      "createdDate": "2020-09-01T08:00:00.000Z",
+      "modifiedDate": "2025-03-10T14:22:00.000Z",
+      "portalUrl": "https://research-information.bris.ac.uk/en/persons/11111111-1111-1111-1111-111111111111",
+      "version": "1",
+      "name": {
+        "firstName": "Jane",
+        "lastName": "Researcher"
+      },
+      "orcid": "0000-0002-1825-0097",
+      "orcidAuthenticated": true,
+      "nationality": {
+        "uri": "/dk/atira/pure/person/nationality/gb",
+        "term": {
+          "en_GB": "United Kingdom"
+        }
+      },
+      "willingToTakePhdStudents": true,
+      "profiled": true,
+      "systemName": "Person"
+    }
+  ]
+}

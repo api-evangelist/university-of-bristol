@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bristol/main/json-structure/university-of-bristol-person-structure.json",
+  "name": "Person",
+  "type": "object",
+  "description": "JSON Structure for a Pure Person (researcher) at the University of Bristol Research Portal.",
+  "properties": {
+    "pureId": { "type": "int64" },
+    "uuid": { "type": "string" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" },
+    "portalUrl": { "type": "string" },
+    "version": { "type": "string" },
+    "name": {
+      "type": "object",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" }
+      }
+    },
+    "orcid": { "type": "string" },
+    "orcidAuthenticated": { "type": "boolean" },
+    "willingToTakePhdStudents": { "type": "boolean" },
+    "profiled": { "type": "boolean" }
+  }
+}

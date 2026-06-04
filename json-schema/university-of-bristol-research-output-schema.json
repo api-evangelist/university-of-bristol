@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-bristol/main/json-schema/university-of-bristol-research-output-schema.json",
+  "title": "ResearchOutput",
+  "description": "A research output (publication) record from the University of Bristol Research Portal (Pure API 5.34.1).",
+  "type": "object",
+  "required": ["title", "type", "category", "typeDiscriminator"],
+  "properties": {
+    "pureId": { "type": "integer" },
+    "uuid": { "type": "string", "format": "uuid" },
+    "createdBy": { "type": "string" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedBy": { "type": "string" },
+    "modifiedDate": { "type": "string", "format": "date-time" },
+    "portalUrl": { "type": "string", "format": "uri" },
+    "previousUuids": { "type": "array", "items": { "type": "string" } },
+    "version": { "type": "string" },
+    "title": {
+      "type": "object",
+      "required": ["value"],
+      "properties": { "value": { "type": "string" } }
+    },
+    "subTitle": {
+      "type": "object",
+      "properties": { "value": { "type": "string" } }
+    },
+    "type": { "$ref": "#/$defs/ClassificationRef" },
+    "category": { "$ref": "#/$defs/ClassificationRef" },
+    "language": { "$ref": "#/$defs/ClassificationRef" },
+    "peerReview": { "type": "boolean" },
+    "submissionYear": { "type": "integer" },
+    "totalNumberOfContributors": { "type": "integer" },
+    "publicationStatuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pureId": { "type": "integer" },
+          "current": { "type": "boolean" },
+          "publicationStatus": { "$ref": "#/$defs/ClassificationRef" }
+        }
+      }
+    },
+    "systemName": { "type": "string" },
+    "typeDiscriminator": { "type": "string" }
+  },
+  "$defs": {
+    "ClassificationRef": {
+      "type": "object",
+      "required": ["uri"],
+      "properties": {
+        "uri": { "type": "string" },
+        "term": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

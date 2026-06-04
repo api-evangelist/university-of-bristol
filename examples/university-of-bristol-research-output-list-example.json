@@ -1,0 +1,55 @@
+{
+  "count": 1,
+  "pageInformation": {
+    "offset": 0,
+    "size": 10
+  },
+  "items": [
+    {
+      "pureId": 123456789,
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "createdDate": "2024-01-15T09:30:00.000Z",
+      "modifiedDate": "2024-02-01T11:00:00.000Z",
+      "portalUrl": "https://research-information.bris.ac.uk/en/publications/00000000-0000-0000-0000-000000000000",
+      "version": "1",
+      "title": {
+        "value": "Example research article title"
+      },
+      "type": {
+        "uri": "/dk/atira/pure/researchoutput/researchoutputtypes/contributiontojournal/article",
+        "term": {
+          "en_GB": "Article"
+        }
+      },
+      "category": {
+        "uri": "/dk/atira/pure/researchoutput/category/academic",
+        "term": {
+          "en_GB": "Research"
+        }
+      },
+      "language": {
+        "uri": "/dk/atira/pure/core/languages/en_GB",
+        "term": {
+          "en_GB": "English"
+        }
+      },
+      "peerReview": true,
+      "submissionYear": 2024,
+      "totalNumberOfContributors": 3,
+      "publicationStatuses": [
+        {
+          "pureId": 987654321,
+          "current": true,
+          "publicationStatus": {
+            "uri": "/dk/atira/pure/researchoutput/status/published",
+            "term": {
+              "en_GB": "Published"
+            }
+          }
+        }
+      ],
+      "systemName": "ResearchOutput",
+      "typeDiscriminator": "ContributionToJournal"
+    }
+  ]
+}

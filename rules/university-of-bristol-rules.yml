@@ -1,0 +1,54 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
+rules:
+  uob-pure-server-url:
+    description: Servers should point at the Bristol Research Portal Pure API base path.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "(research-information\\.bris\\.ac\\.uk/ws/api|/ws/api)"
+  uob-pure-apikey-security:
+    description: Pure API operations are protected by the api-key header security scheme.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: api-key
+      function: truthy
+  uob-pagination-params:
+    description: List (collection) GET operations should expose size and offset paging parameters.
+    severity: info
+    given: $.paths[*].get.parameters
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+  uob-list-result-items:
+    description: List result schemas should expose count, pageInformation and items.
+    severity: warn
+    given: $.components.schemas[?(@property.match(/ListResult$/))].properties
+    then:
+      - field: items
+        function: truthy
+      - field: count
+        function: truthy
+  uob-uuid-format:
+    description: Resource uuid properties should declare uuid string format.
+    severity: info
+    given: $.components.schemas[*].properties.uuid
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        match: "uuid"
+  uob-operation-id:
+    description: Every operation should carry an operationId for client generation.
+    severity: warn
+    given: $.paths[*][get,put,post,delete]
+    then:
+      field: operationId
+      function: truthy

@@ -1,0 +1,56 @@
+vocabulary:
+  name: University of Bristol Research Portal (Pure) Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms exposed by the University of Bristol
+    Research Portal (Pure API 5.34.1) and its OAI-PMH interface. Terms reflect the
+    Pure data model for open research information at research-information.bris.ac.uk.
+  version: "5.34.1"
+  terms:
+    - term: ResearchOutput
+      definition: >-
+        A research publication or output (article, book, conference contribution,
+        thesis, etc.) recorded in Pure, classified by type and category.
+      tags: [pure, publication, research]
+    - term: Person
+      definition: >-
+        A researcher or staff member profile in Pure, including name, ORCID and
+        organisational associations.
+      tags: [pure, researcher, profile]
+    - term: Project
+      definition: >-
+        A research project record in Pure, with participants, managing
+        organisation, period and associated outputs.
+      tags: [pure, project, research]
+    - term: DataSet
+      definition: >-
+        A research dataset record in Pure, typically issued a DataCite DOI and
+        surfaced through the data.bris repository.
+      tags: [pure, dataset, open-data, datacite]
+    - term: ClassificationRef
+      definition: >-
+        A reference to a Pure classification scheme value, expressed as a URI plus
+        a localized human-readable term.
+      tags: [pure, classification, reference]
+    - term: PageInformation
+      definition: Paging metadata (offset and size) returned with Pure list results.
+      tags: [pure, pagination]
+    - term: uuid
+      definition: The universally unique identifier for a Pure content object.
+      tags: [identifier]
+    - term: orcid
+      definition: The ORCID iD associated with a person profile.
+      tags: [identifier, person]
+    - term: portalUrl
+      definition: The public Bristol Research Portal URL for a content object.
+      tags: [link, portal]
+    - term: OAI-PMH
+      definition: >-
+        Open Archives Initiative Protocol for Metadata Harvesting 2.0 interface
+        for the University of Bristol Open Access Interface Repository, supporting
+        verbs such as Identify, ListRecords and ListMetadataFormats.
+      tags: [oai-pmh, harvesting, open-access, metadata]
+    - term: DOI
+      definition: >-
+        DataCite Digital Object Identifier issued to datasets in the data.bris
+        research data repository.
+      tags: [identifier, datacite, dataset]

@@ -43,6 +43,32 @@ apis:
         url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
       - type: OpenAPI
         url: https://research-information.bris.ac.uk/ws/api/openapi.json
+      - type: OpenAPI
+        url: openapi/university-of-bristol-pure-research-api.yaml
+      - type: JSONSchema
+        url: json-schema/university-of-bristol-research-output-schema.json
+      - type: JSONSchema
+        url: json-schema/university-of-bristol-person-schema.json
+      - type: JSONSchema
+        url: json-schema/university-of-bristol-dataset-schema.json
+      - type: JSONStructure
+        url: json-structure/university-of-bristol-research-output-structure.json
+      - type: JSONStructure
+        url: json-structure/university-of-bristol-person-structure.json
+      - type: JSONStructure
+        url: json-structure/university-of-bristol-dataset-structure.json
+      - type: Example
+        url: examples/university-of-bristol-research-output-list-example.json
+      - type: Example
+        url: examples/university-of-bristol-person-list-example.json
+      - type: Example
+        url: examples/university-of-bristol-dataset-list-example.json
+      - type: Rules
+        url: rules/university-of-bristol-rules.yml
+      - type: Vocabulary
+        url: vocabulary/university-of-bristol-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/university-of-bristol-context.jsonld
   - aid: university-of-bristol:pure-oai-pmh
     name: Bristol Research Portal OAI-PMH
     description: >-
