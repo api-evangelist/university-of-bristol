@@ -1,0 +1,94 @@
+---
+aid: university-of-bristol
+name: University of Bristol
+description: >-
+  The University of Bristol is a public research university in Bristol, United
+  Kingdom, ranked #58 in the QS World University Rankings 2025. Its public
+  developer/API footprint is research-oriented rather than a centralized
+  developer portal: the Bristol Research Portal (Pure, by Elsevier) exposes a
+  documented REST API and an OAI-PMH 2.0 interface over its open-access research
+  outputs, and data.bris is the institution's open research data repository with
+  DataCite DOIs. Department-level engineering groups (notably HPC and Computer
+  Science) publish open-source code on GitHub, but the university does not
+  operate a single unified institutional API/developer program.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-bristol/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - United Kingdom
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-bristol:pure-research-api
+    name: Bristol Research Portal (Pure) API
+    description: >-
+      REST web services API for the University of Bristol Research Portal, which
+      is powered by Elsevier Pure. Documented with an OpenAPI 3.0.1 specification,
+      it exposes the Pure model (research outputs, persons, projects, datasets,
+      organisations) as interconnected resources supporting anonymous Open Data
+      read scenarios as well as authenticated CRUD operations.
+    humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
+    baseURL: https://research-information.bris.ac.uk/ws/api
+    tags: [ Research, Publications, Open Data, Pure, OpenAPI ]
+    properties:
+      - type: Documentation
+        url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
+      - type: OpenAPI
+        url: https://research-information.bris.ac.uk/ws/api/openapi.json
+  - aid: university-of-bristol:pure-oai-pmh
+    name: Bristol Research Portal OAI-PMH
+    description: >-
+      OAI-PMH 2.0 interface for the "University of Bristol Open Access Interface
+      Repository", allowing harvesting of metadata for the institution's
+      open-access research publications via the standard OAI-PMH verbs
+      (Identify, ListRecords, ListMetadataFormats, etc.).
+    humanURL: https://research-information.bris.ac.uk/
+    baseURL: https://research-information.bris.ac.uk/ws/oai
+    tags: [ Research, Publications, OAI-PMH, Metadata Harvesting, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://research-information.bris.ac.uk/ws/oai?verb=Identify
+  - aid: university-of-bristol:data-bris
+    name: data.bris Research Data Repository
+    description: >-
+      data.bris is the University of Bristol's open research data repository,
+      providing public access to multidisciplinary research datasets. Datasets
+      are issued British Library DataCite DOIs and the majority are openly
+      downloadable. A unified, publicly documented machine API was not confirmed
+      live during review; the repository is primarily a web-based discovery and
+      download service with DataCite DOI integration.
+    humanURL: https://data.bris.ac.uk/data/
+    tags: [ Research Data, Open Data, Repository, DataCite, DOI ]
+    properties:
+      - type: Documentation
+        url: https://data.bris.ac.uk/data/about
+common:
+  - type: Website
+    url: https://www.bristol.ac.uk/
+  - type: DeveloperPortal
+    url: https://research-information.bris.ac.uk/
+  - type: GitHub
+    url: https://github.com/uob-hpc
+  - type: SourceCode
+    url: https://github.com/cs-uob
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-bristol/
+  - type: Plans
+    url: plans/university-of-bristol-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-bristol-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-bristol-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
