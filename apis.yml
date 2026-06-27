@@ -57,11 +57,11 @@ apis:
         url: json-structure/university-of-bristol-person-structure.json
       - type: JSONStructure
         url: json-structure/university-of-bristol-dataset-structure.json
-      - type: Example
+      - type: Examples
         url: examples/university-of-bristol-research-output-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/university-of-bristol-person-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/university-of-bristol-dataset-list-example.json
       - type: Rules
         url: rules/university-of-bristol-rules.yml
