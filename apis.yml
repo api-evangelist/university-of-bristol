@@ -97,6 +97,10 @@ apis:
       - type: Documentation
         url: https://data.bris.ac.uk/data/about
 common:
+  - type: DomainSecurity
+    url: security/university-of-bristol-domain-security.yml
+  - type: Authentication
+    url: authentication/university-of-bristol-authentication.yml
   - type: Website
     url: https://www.bristol.ac.uk/
   - type: DeveloperPortal
