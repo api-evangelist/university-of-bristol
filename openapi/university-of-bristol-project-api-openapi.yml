@@ -1,0 +1,193 @@
+openapi: 3.0.1
+info:
+  title: Pure data-set project API
+  description: The Pure API provides a secure and complete web services API for using and managing research information data in Pure. This OpenAPI description is a faithful, read-oriented subset of the University of Bristol Research Portal (Pure, by Elsevier) API as published at https://research-information.bris.ac.uk/ws/api, focused on the core Open Data collections (research outputs, persons, projects, datasets) and their canonical item lookups. The upstream specification (Pure 5.34.1) exposes 608 paths and the full Pure model; this document keeps only the real paths and schemas confirmed against the live spec.
+  version: 5.34.1
+  contact:
+    email: pure-support@bristol.ac.uk
+servers:
+- url: https://research-information.bris.ac.uk/ws/api
+  description: University of Bristol Research Portal (Pure) API
+security:
+- api-key: []
+tags:
+- name: project
+paths:
+  /projects:
+    get:
+      tags:
+      - project
+      summary: Lists all projects
+      operationId: project_list
+      parameters:
+      - $ref: '#/components/parameters/size'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResult'
+        default:
+          $ref: '#/components/responses/Problem'
+  /projects/{uuid}:
+    get:
+      tags:
+      - project
+      summary: Get project
+      operationId: project_get
+      parameters:
+      - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        default:
+          $ref: '#/components/responses/Problem'
+components:
+  schemas:
+    SystemLocalizedString:
+      type: object
+      additionalProperties: true
+      description: System-localized string value keyed by locale.
+    ProjectListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    PageInformation:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+    LocalizedString:
+      type: object
+      additionalProperties: true
+      description: Map of locale code to string value.
+    Project:
+      type: object
+      required:
+      - title
+      - type
+      - managingOrganization
+      - organizations
+      - typeDiscriminator
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        uuid:
+          type: string
+          format: uuid
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        portalUrl:
+          type: string
+        version:
+          type: string
+        acronym:
+          type: string
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        shortTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        type:
+          $ref: '#/components/schemas/ClassificationRef'
+        totalAcademicOwnership:
+          type: number
+          format: double
+        systemName:
+          type: string
+        typeDiscriminator:
+          type: string
+    ClassificationRef:
+      type: object
+      required:
+      - uri
+      properties:
+        uri:
+          type: string
+        term:
+          $ref: '#/components/schemas/SystemLocalizedString'
+  parameters:
+    size:
+      name: size
+      in: query
+      description: Number of returned items per request.
+      schema:
+        type: integer
+        format: int32
+        maximum: 1000
+        default: 10
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      description: UUID or known identifier of the content.
+      schema:
+        type: string
+    order:
+      name: order
+      in: query
+      description: The order of the list, must be a value from the matching /orderings endpoint.
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: The offset for the returned list. 0 or null value is from the start.
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Problem:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  securitySchemes:
+    api-key:
+      type: apiKey
+      description: Security mechanism for the API
+      name: api-key
+      in: header
