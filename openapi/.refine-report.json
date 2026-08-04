@@ -1,0 +1,20 @@
+{
+  "provider": "university-of-bristol",
+  "sources": [
+    "university-of-bristol-data-set-api-openapi.yml",
+    "university-of-bristol-person-api-openapi.yml",
+    "university-of-bristol-project-api-openapi.yml",
+    "university-of-bristol-research-output-api-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-bristol-data-set-api-openapi.yml",
+    "university-of-bristol-person-api-openapi.yml",
+    "university-of-bristol-project-api-openapi.yml",
+    "university-of-bristol-research-output-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,493 @@
+openapi: 3.0.1
+info:
+  title: Pure API
+  description: >-
+    The Pure API provides a secure and complete web services API for using and
+    managing research information data in Pure. This OpenAPI description is a
+    faithful, read-oriented subset of the University of Bristol Research Portal
+    (Pure, by Elsevier) API as published at
+    https://research-information.bris.ac.uk/ws/api, focused on the core
+    Open Data collections (research outputs, persons, projects, datasets) and
+    their canonical item lookups. The upstream specification (Pure 5.34.1)
+    exposes 608 paths and the full Pure model; this document keeps only the
+    real paths and schemas confirmed against the live spec.
+  version: 5.34.1
+  contact:
+    email: pure-support@bristol.ac.uk
+servers:
+  - url: https://research-information.bris.ac.uk/ws/api
+    description: University of Bristol Research Portal (Pure) API
+security:
+  - api-key: []
+tags:
+  - name: research-output
+  - name: person
+  - name: project
+  - name: data-set
+paths:
+  /research-outputs:
+    get:
+      tags: [research-output]
+      summary: Lists all research outputs
+      description: >-
+        Lists all research outputs in the Pure instance. If you need to filter
+        the research outputs returned, see the POST version which supports
+        additional filtering.
+      operationId: researchOutput_list
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutputListResult'
+        default:
+          $ref: '#/components/responses/Problem'
+  /research-outputs/{uuid}:
+    get:
+      tags: [research-output]
+      summary: Get research output
+      description: Get a single research output by its UUID.
+      operationId: researchOutput_get
+      parameters:
+        - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutput'
+        default:
+          $ref: '#/components/responses/Problem'
+  /persons:
+    get:
+      tags: [person]
+      summary: Lists all persons
+      operationId: person_list
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonListResult'
+        default:
+          $ref: '#/components/responses/Problem'
+  /persons/{uuid}:
+    get:
+      tags: [person]
+      summary: Get person
+      operationId: person_get
+      parameters:
+        - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          $ref: '#/components/responses/Problem'
+  /projects:
+    get:
+      tags: [project]
+      summary: Lists all projects
+      operationId: project_list
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResult'
+        default:
+          $ref: '#/components/responses/Problem'
+  /projects/{uuid}:
+    get:
+      tags: [project]
+      summary: Get project
+      operationId: project_get
+      parameters:
+        - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        default:
+          $ref: '#/components/responses/Problem'
+  /data-sets:
+    get:
+      tags: [data-set]
+      summary: Lists all datasets
+      operationId: dataSet_list
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSetListResult'
+        default:
+          $ref: '#/components/responses/Problem'
+  /data-sets/{uuid}:
+    get:
+      tags: [data-set]
+      summary: Get dataset
+      operationId: dataSet_get
+      parameters:
+        - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSet'
+        default:
+          $ref: '#/components/responses/Problem'
+components:
+  securitySchemes:
+    api-key:
+      type: apiKey
+      description: Security mechanism for the API
+      name: api-key
+      in: header
+  parameters:
+    size:
+      name: size
+      in: query
+      description: Number of returned items per request.
+      schema:
+        type: integer
+        format: int32
+        maximum: 1000
+        default: 10
+    offset:
+      name: offset
+      in: query
+      description: The offset for the returned list. 0 or null value is from the start.
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    order:
+      name: order
+      in: query
+      description: The order of the list, must be a value from the matching /orderings endpoint.
+      schema:
+        type: string
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      description: UUID or known identifier of the content.
+      schema:
+        type: string
+  responses:
+    Problem:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  schemas:
+    PageInformation:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+    FormattedString:
+      type: object
+      required: [value]
+      properties:
+        value:
+          type: string
+    LocalizedString:
+      type: object
+      additionalProperties: true
+      description: Map of locale code to string value.
+    SystemLocalizedString:
+      type: object
+      additionalProperties: true
+      description: System-localized string value keyed by locale.
+    ClassificationRef:
+      type: object
+      required: [uri]
+      properties:
+        uri:
+          type: string
+        term:
+          $ref: '#/components/schemas/SystemLocalizedString'
+    Name:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    PublicationStatus:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        current:
+          type: boolean
+        publicationStatus:
+          $ref: '#/components/schemas/ClassificationRef'
+    ResearchOutput:
+      type: object
+      required: [title, type, category, typeDiscriminator]
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        uuid:
+          type: string
+          format: uuid
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        portalUrl:
+          type: string
+        previousUuids:
+          type: array
+          items:
+            type: string
+        version:
+          type: string
+        title:
+          $ref: '#/components/schemas/FormattedString'
+        subTitle:
+          $ref: '#/components/schemas/FormattedString'
+        type:
+          $ref: '#/components/schemas/ClassificationRef'
+        category:
+          $ref: '#/components/schemas/ClassificationRef'
+        peerReview:
+          type: boolean
+        publicationStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicationStatus'
+        language:
+          $ref: '#/components/schemas/ClassificationRef'
+        totalNumberOfContributors:
+          type: integer
+          format: int32
+        submissionYear:
+          type: integer
+          format: int32
+        systemName:
+          type: string
+        typeDiscriminator:
+          type: string
+    ResearchOutputListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResearchOutput'
+    Person:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        uuid:
+          type: string
+          format: uuid
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        portalUrl:
+          type: string
+        version:
+          type: string
+        name:
+          $ref: '#/components/schemas/Name'
+        orcid:
+          type: string
+        orcidAuthenticated:
+          type: boolean
+        nationality:
+          $ref: '#/components/schemas/ClassificationRef'
+        gender:
+          $ref: '#/components/schemas/ClassificationRef'
+        willingToTakePhdStudents:
+          type: boolean
+        profiled:
+          type: boolean
+        systemName:
+          type: string
+    PersonListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+    Project:
+      type: object
+      required: [title, type, managingOrganization, organizations, typeDiscriminator]
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        uuid:
+          type: string
+          format: uuid
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        portalUrl:
+          type: string
+        version:
+          type: string
+        acronym:
+          type: string
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        shortTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        type:
+          $ref: '#/components/schemas/ClassificationRef'
+        totalAcademicOwnership:
+          type: number
+          format: double
+        systemName:
+          type: string
+        typeDiscriminator:
+          type: string
+    ProjectListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    DataSet:
+      type: object
+      required: [title, type, managingOrganization, publisher, persons, visibility]
+      properties:
+        pureId:
+          type: integer
+          format: int64
+        uuid:
+          type: string
+          format: uuid
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        portalUrl:
+          type: string
+        version:
+          type: string
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        type:
+          $ref: '#/components/schemas/ClassificationRef'
+        totalNumberOfAuthors:
+          type: integer
+          format: int32
+        openAireCompliant:
+          type: boolean
+        license:
+          $ref: '#/components/schemas/ClassificationRef'
+        systemName:
+          type: string
+    DataSetListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSet'
