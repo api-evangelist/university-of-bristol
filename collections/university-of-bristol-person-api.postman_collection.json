@@ -1,0 +1,357 @@
+{
+  "item": [
+    {
+      "id": "30d38392-4f76-4ed7-b6ec-394bb228077f",
+      "name": "person",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1089bbe-263c-4f01-855c-abe2caa95cf3",
+          "name": "Lists all persons",
+          "request": {
+            "name": "Lists all persons",
+            "description": {},
+            "url": {
+              "path": [
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of returned items per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The offset for the returned list. 0 or null value is from the start."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The order of the list, must be a value from the matching /orderings endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "beb1d311-e79b-48ce-aa3a-0fc458cba1f5",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3408,\n  \"pageInformation\": {\n    \"offset\": 9115,\n    \"size\": 2691\n  },\n  \"items\": [\n    {\n      \"pureId\": 7602,\n      \"uuid\": \"0aaf1ce0-0ff8-4c0f-c5f8-16119f5f4db4\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"2025-11-13T17:35:58.737Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2022-11-08T21:58:40.977Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"name\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"orcid\": \"string\",\n      \"orcidAuthenticated\": true,\n      \"nationality\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 395\n        }\n      },\n      \"gender\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 1586,\n          \"key_1\": false\n        }\n      },\n      \"willingToTakePhdStudents\": true,\n      \"profiled\": true,\n      \"systemName\": \"string\"\n    },\n    {\n      \"pureId\": 4411,\n      \"uuid\": \"6731d2aa-4091-0749-0ac1-dd5f25aff27b\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"2024-10-13T14:48:48.279Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2012-02-05T00:37:00.614Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"name\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      \"orcid\": \"string\",\n      \"orcidAuthenticated\": true,\n      \"nationality\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 4485\n        }\n      },\n      \"gender\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"willingToTakePhdStudents\": false,\n      \"profiled\": false,\n      \"systemName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4452f8-e819-4627-bfa0-466e31f1975f",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1963,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d41c2e9-59cf-4842-a06d-544997764450",
+          "name": "Get person",
+          "request": {
+            "name": "Get person",
+            "description": {},
+            "url": {
+              "path": [
+                "persons",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID or known identifier of the content."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc86cd09-54b5-4622-b047-d9a1ac24fda4",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pureId\": 8362,\n  \"uuid\": \"95ee70e5-72e7-d8d1-13f7-804e5a99e94b\",\n  \"createdBy\": \"string\",\n  \"createdDate\": \"2003-06-26T13:27:31.034Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedDate\": \"2008-10-17T17:08:31.183Z\",\n  \"portalUrl\": \"string\",\n  \"version\": \"string\",\n  \"name\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\"\n  },\n  \"orcid\": \"string\",\n  \"orcidAuthenticated\": true,\n  \"nationality\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": \"string\",\n      \"key_1\": 1260.962576170229\n    }\n  },\n  \"gender\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": 6374.472960550684\n    }\n  },\n  \"willingToTakePhdStudents\": true,\n  \"profiled\": true,\n  \"systemName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f209848-c582-4908-94fa-dcfd6edf0080",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1963,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://research-information.bris.ac.uk/ws/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "336ea658-ca7d-4555-8e11-100584d5b0d7",
+    "name": "Pure data-set person API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Pure API provides a secure and complete web services API for using and managing research information data in Pure. This OpenAPI description is a faithful, read-oriented subset of the University of Bristol Research Portal (Pure, by Elsevier) API as published at https://research-information.bris.ac.uk/ws/api, focused on the core Open Data collections (research outputs, persons, projects, datasets) and their canonical item lookups. The upstream specification (Pure 5.34.1) exposes 608 paths and the full Pure model; this document keeps only the real paths and schemas confirmed against the live spec.\n\nContact Support:\n Email: pure-support@bristol.ac.uk",
+      "type": "text/plain"
+    }
+  }
+}

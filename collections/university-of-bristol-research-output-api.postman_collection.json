@@ -1,0 +1,363 @@
+{
+  "item": [
+    {
+      "id": "79d13eac-3701-4276-a698-eae1473fc954",
+      "name": "research-output",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49a09349-8188-403b-a8af-32e9a76b185a",
+          "name": "Lists all research outputs",
+          "request": {
+            "name": "Lists all research outputs",
+            "description": {
+              "content": "Lists all research outputs in the Pure instance. If you need to filter the research outputs returned, see the POST version which supports additional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "research-outputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of returned items per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The offset for the returned list. 0 or null value is from the start."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The order of the list, must be a value from the matching /orderings endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4403f46b-692b-42e5-85cc-8c527c498622",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research-outputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6104,\n  \"pageInformation\": {\n    \"offset\": 6564,\n    \"size\": 2894\n  },\n  \"items\": [\n    {\n      \"title\": {\n        \"value\": \"string\"\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 3455,\n          \"key_1\": 5913,\n          \"key_2\": 8948.862384360258\n        }\n      },\n      \"category\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": false\n        }\n      },\n      \"typeDiscriminator\": \"string\",\n      \"pureId\": 8370,\n      \"uuid\": \"f0e52340-a8a7-458c-c812-4b3d999452c3\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"1948-02-28T06:09:26.433Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"1992-08-26T16:29:47.105Z\",\n      \"portalUrl\": \"string\",\n      \"previousUuids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"version\": \"string\",\n      \"subTitle\": {\n        \"value\": \"string\"\n      },\n      \"peerReview\": false,\n      \"publicationStatuses\": [\n        {\n          \"pureId\": 1152,\n          \"current\": false,\n          \"publicationStatus\": {\n            \"uri\": \"string\",\n            \"term\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pureId\": 5749,\n          \"current\": true,\n          \"publicationStatus\": {\n            \"uri\": \"string\",\n            \"term\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"language\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 5849.505397905623,\n          \"key_1\": \"string\"\n        }\n      },\n      \"totalNumberOfContributors\": 6500,\n      \"submissionYear\": 1451,\n      \"systemName\": \"string\"\n    },\n    {\n      \"title\": {\n        \"value\": \"string\"\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 2311.2914431028307,\n          \"key_1\": 5896\n        }\n      },\n      \"category\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 9778,\n          \"key_1\": \"string\"\n        }\n      },\n      \"typeDiscriminator\": \"string\",\n      \"pureId\": 719,\n      \"uuid\": \"aa1202fb-c977-26c4-8e80-0f5bac24c2eb\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"2015-07-06T14:48:42.834Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2004-01-08T12:04:24.768Z\",\n      \"portalUrl\": \"string\",\n      \"previousUuids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"version\": \"string\",\n      \"subTitle\": {\n        \"value\": \"string\"\n      },\n      \"peerReview\": false,\n      \"publicationStatuses\": [\n        {\n          \"pureId\": 7269,\n          \"current\": false,\n          \"publicationStatus\": {\n            \"uri\": \"string\",\n            \"term\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pureId\": 2927,\n          \"current\": true,\n          \"publicationStatus\": {\n            \"uri\": \"string\",\n            \"term\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"language\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"totalNumberOfContributors\": 6949,\n      \"submissionYear\": 6269,\n      \"systemName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a654f31e-6416-4fa3-a867-e09c309c5e34",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research-outputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2983,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56e0eeca-ad1a-4ff3-81d7-e3c38d74889a",
+          "name": "Get research output",
+          "request": {
+            "name": "Get research output",
+            "description": {
+              "content": "Get a single research output by its UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "research-outputs",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID or known identifier of the content."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4d68d44-ce12-4365-ad27-1546912217a3",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research-outputs",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": {\n    \"value\": \"string\"\n  },\n  \"type\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": 8434.007161194266,\n      \"key_1\": \"string\",\n      \"key_2\": 6746\n    }\n  },\n  \"category\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": 5368,\n      \"key_1\": 1436\n    }\n  },\n  \"typeDiscriminator\": \"string\",\n  \"pureId\": 9988,\n  \"uuid\": \"e2e28692-603d-cfda-9c22-5e161a4aca05\",\n  \"createdBy\": \"string\",\n  \"createdDate\": \"1953-02-17T13:10:43.074Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedDate\": \"1955-09-07T13:57:30.913Z\",\n  \"portalUrl\": \"string\",\n  \"previousUuids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"version\": \"string\",\n  \"subTitle\": {\n    \"value\": \"string\"\n  },\n  \"peerReview\": false,\n  \"publicationStatuses\": [\n    {\n      \"pureId\": 9239,\n      \"current\": true,\n      \"publicationStatus\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": \"string\",\n          \"key_1\": true,\n          \"key_2\": 4554.071236107638\n        }\n      }\n    },\n    {\n      \"pureId\": 8387,\n      \"current\": true,\n      \"publicationStatus\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": true\n        }\n      }\n    }\n  ],\n  \"language\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"totalNumberOfContributors\": 5639,\n  \"submissionYear\": 1881,\n  \"systemName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c62d36ea-0114-4bd8-968e-ec97be891a4e",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research-outputs",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2983,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://research-information.bris.ac.uk/ws/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e1fe6f5-6671-45c1-8b0c-e7723f435012",
+    "name": "Pure data-set research-output API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Pure API provides a secure and complete web services API for using and managing research information data in Pure. This OpenAPI description is a faithful, read-oriented subset of the University of Bristol Research Portal (Pure, by Elsevier) API as published at https://research-information.bris.ac.uk/ws/api, focused on the core Open Data collections (research outputs, persons, projects, datasets) and their canonical item lookups. The upstream specification (Pure 5.34.1) exposes 608 paths and the full Pure model; this document keeps only the real paths and schemas confirmed against the live spec.\n\nContact Support:\n Email: pure-support@bristol.ac.uk",
+      "type": "text/plain"
+    }
+  }
+}

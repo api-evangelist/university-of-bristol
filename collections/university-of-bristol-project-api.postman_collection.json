@@ -1,0 +1,357 @@
+{
+  "item": [
+    {
+      "id": "462dc162-3a9f-4f69-ab26-aeb3b3356c65",
+      "name": "project",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d69c382c-11cc-4ccf-a2b0-3d1513b65837",
+          "name": "Lists all projects",
+          "request": {
+            "name": "Lists all projects",
+            "description": {},
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of returned items per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The offset for the returned list. 0 or null value is from the start."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The order of the list, must be a value from the matching /orderings endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d9c96d5-c30f-428a-9318-4ce15585a42c",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5429,\n  \"pageInformation\": {\n    \"offset\": 5741,\n    \"size\": 695\n  },\n  \"items\": [\n    {\n      \"title\": {\n        \"key_0\": 4675.093857289106,\n        \"key_1\": true\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 6837\n        }\n      },\n      \"typeDiscriminator\": \"string\",\n      \"pureId\": 84,\n      \"uuid\": \"d439050d-baa5-64d8-e4b7-0021adbe3afc\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"1947-11-25T19:03:06.337Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2000-09-26T19:49:29.966Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"acronym\": \"string\",\n      \"shortTitle\": {\n        \"key_0\": 5461.910649661427\n      },\n      \"totalAcademicOwnership\": 5023.10490062351,\n      \"systemName\": \"string\"\n    },\n    {\n      \"title\": {\n        \"key_0\": 6450\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": false,\n          \"key_1\": true\n        }\n      },\n      \"typeDiscriminator\": \"string\",\n      \"pureId\": 3418,\n      \"uuid\": \"6e74142e-726c-8eb9-2d98-c45308e84779\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"2022-03-18T18:26:17.637Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2016-08-15T22:19:37.206Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"acronym\": \"string\",\n      \"shortTitle\": {\n        \"key_0\": 2918.9787245993957,\n        \"key_1\": true\n      },\n      \"totalAcademicOwnership\": 3944.4212714229866,\n      \"systemName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f84eff09-1690-4827-a33e-e6384f46eddc",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 363,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a637a7b2-1a10-41ea-9237-759dd603536a",
+          "name": "Get project",
+          "request": {
+            "name": "Get project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID or known identifier of the content."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55e4bd8d-3181-4e2d-9cd6-fbcf7c33e35b",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": {\n    \"key_0\": true,\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  },\n  \"type\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": true,\n      \"key_1\": \"string\"\n    }\n  },\n  \"typeDiscriminator\": \"string\",\n  \"pureId\": 8709,\n  \"uuid\": \"cd4566ac-bcc2-ec8c-0c4e-ddbcad7df40d\",\n  \"createdBy\": \"string\",\n  \"createdDate\": \"2016-05-03T00:26:31.165Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedDate\": \"2010-11-18T04:15:45.192Z\",\n  \"portalUrl\": \"string\",\n  \"version\": \"string\",\n  \"acronym\": \"string\",\n  \"shortTitle\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5314,\n    \"key_2\": \"string\"\n  },\n  \"totalAcademicOwnership\": 4147.8778197463325,\n  \"systemName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "133057fb-16a8-49c1-b28b-c34e9b33d65f",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 363,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://research-information.bris.ac.uk/ws/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "76fda364-6a2d-4517-8e12-0d122636c5f3",
+    "name": "Pure data-set project API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Pure API provides a secure and complete web services API for using and managing research information data in Pure. This OpenAPI description is a faithful, read-oriented subset of the University of Bristol Research Portal (Pure, by Elsevier) API as published at https://research-information.bris.ac.uk/ws/api, focused on the core Open Data collections (research outputs, persons, projects, datasets) and their canonical item lookups. The upstream specification (Pure 5.34.1) exposes 608 paths and the full Pure model; this document keeps only the real paths and schemas confirmed against the live spec.\n\nContact Support:\n Email: pure-support@bristol.ac.uk",
+      "type": "text/plain"
+    }
+  }
+}

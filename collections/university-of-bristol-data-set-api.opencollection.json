@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pure data-set API",
+    "version": "5.34.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "data-set",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://research-information.bris.ac.uk/ws/api/data-sets",
+            "params": [
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of returned items per request."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset for the returned list. 0 or null value is from the start."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The order of the list, must be a value from the matching /orderings endpoint."
+              }
+            ]
+          },
+          "docs": "Lists all datasets"
+        },
+        {
+          "info": {
+            "name": "Get dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://research-information.bris.ac.uk/ws/api/data-sets/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID or known identifier of the content."
+              }
+            ]
+          },
+          "docs": "Get dataset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

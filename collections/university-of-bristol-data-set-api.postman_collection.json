@@ -1,0 +1,357 @@
+{
+  "item": [
+    {
+      "id": "f380628a-d487-448e-88cb-0927323b8b72",
+      "name": "data-set",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acb82dda-7c7b-488a-b49e-1d8c0d58509d",
+          "name": "Lists all datasets",
+          "request": {
+            "name": "Lists all datasets",
+            "description": {},
+            "url": {
+              "path": [
+                "data-sets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of returned items per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The offset for the returned list. 0 or null value is from the start."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The order of the list, must be a value from the matching /orderings endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77fd9ff8-df94-4bb7-8fbe-a8fff836cbfd",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-sets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9809,\n  \"pageInformation\": {\n    \"offset\": 9726,\n    \"size\": 8784\n  },\n  \"items\": [\n    {\n      \"title\": {\n        \"key_0\": 22.98823034024511,\n        \"key_1\": false\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": 5201.249003797214\n        }\n      },\n      \"pureId\": 716,\n      \"uuid\": \"ed7eb264-7776-958b-08a2-ba44359f19ff\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"1962-09-04T14:23:20.292Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2007-09-22T06:31:40.347Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"totalNumberOfAuthors\": 2408,\n      \"openAireCompliant\": false,\n      \"license\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": false,\n          \"key_1\": \"string\",\n          \"key_2\": 9987.011793068217\n        }\n      },\n      \"systemName\": \"string\"\n    },\n    {\n      \"title\": {\n        \"key_0\": 6972.813926367878,\n        \"key_1\": 5641.6186348062965\n      },\n      \"type\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": 4002\n        }\n      },\n      \"pureId\": 1419,\n      \"uuid\": \"3ef3d8d1-43f7-44ff-17c7-86a96302c769\",\n      \"createdBy\": \"string\",\n      \"createdDate\": \"2004-07-21T01:39:21.626Z\",\n      \"modifiedBy\": \"string\",\n      \"modifiedDate\": \"2000-12-15T04:46:36.816Z\",\n      \"portalUrl\": \"string\",\n      \"version\": \"string\",\n      \"totalNumberOfAuthors\": 9756,\n      \"openAireCompliant\": false,\n      \"license\": {\n        \"uri\": \"string\",\n        \"term\": {\n          \"key_0\": 7360.235101485245\n        }\n      },\n      \"systemName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4bddd12-335c-4abf-8c13-f566aaaabc44",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-sets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3283,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a462e08b-b0bc-4178-9aae-89608077f0ee",
+          "name": "Get dataset",
+          "request": {
+            "name": "Get dataset",
+            "description": {},
+            "url": {
+              "path": [
+                "data-sets",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID or known identifier of the content."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d2f0fe0-c4af-4c6f-9049-17755135747f",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"type\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": false\n    }\n  },\n  \"pureId\": 8579,\n  \"uuid\": \"54159c12-3458-342f-38f0-6bcbec7aaccb\",\n  \"createdBy\": \"string\",\n  \"createdDate\": \"1956-01-22T14:58:20.068Z\",\n  \"modifiedBy\": \"string\",\n  \"modifiedDate\": \"1966-04-15T22:37:43.373Z\",\n  \"portalUrl\": \"string\",\n  \"version\": \"string\",\n  \"totalNumberOfAuthors\": 8576,\n  \"openAireCompliant\": false,\n  \"license\": {\n    \"uri\": \"string\",\n    \"term\": {\n      \"key_0\": 5672.414436235727,\n      \"key_1\": false\n    }\n  },\n  \"systemName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bc53b62-fd6e-4359-b42d-55f506d6989b",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID or known identifier of the content."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3283,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://research-information.bris.ac.uk/ws/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "993ff311-9e4f-475d-bbf7-a55b67e4feda",
+    "name": "Pure data-set API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Pure API provides a secure and complete web services API for using and managing research information data in Pure. This OpenAPI description is a faithful, read-oriented subset of the University of Bristol Research Portal (Pure, by Elsevier) API as published at https://research-information.bris.ac.uk/ws/api, focused on the core Open Data collections (research outputs, persons, projects, datasets) and their canonical item lookups. The upstream specification (Pure 5.34.1) exposes 608 paths and the full Pure model; this document keeps only the real paths and schemas confirmed against the live spec.\n\nContact Support:\n Email: pure-support@bristol.ac.uk",
+      "type": "text/plain"
+    }
+  }
+}
