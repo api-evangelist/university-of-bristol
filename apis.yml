@@ -45,6 +45,8 @@ apis:
     humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
     baseURL: https://research-information.bris.ac.uk/ws/api
     tags:
+      - Dataset
+    tags_raw:
       - data-set
     properties:
       - type: OpenAPI
@@ -81,6 +83,8 @@ apis:
     humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
     baseURL: https://research-information.bris.ac.uk/ws/api
     tags:
+      - Persons
+    tags_raw:
       - person
     properties:
       - type: OpenAPI
@@ -117,6 +121,8 @@ apis:
     humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
     baseURL: https://research-information.bris.ac.uk/ws/api
     tags:
+      - Project
+    tags_raw:
       - project
     properties:
       - type: OpenAPI
@@ -152,7 +158,8 @@ apis:
     description: The research-output API from University of Bristol — 2 operation(s) for research-output.
     humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
     baseURL: https://research-information.bris.ac.uk/ws/api
-    tags:
+    tags: []
+    tags_raw:
       - research-output
     properties:
       - type: OpenAPI
