@@ -203,6 +203,9 @@ apis:
       - type: JSONLD
         url: json-ld/university-of-bristol-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/university-of-bristol-capability-edges.yml
+    name: University of Bristol Business Capability Map
   - type: AgenticAccess
     url: agentic-access/university-of-bristol-agentic-access.yml
   - type: DomainSecurity
