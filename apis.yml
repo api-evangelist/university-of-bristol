@@ -1,227 +1,270 @@
+---
 aid: university-of-bristol
 name: University of Bristol
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Bristol is a public research university in Bristol, United
-  Kingdom, ranked #58 in the QS World University Rankings 2025. Its public
-  developer/API footprint is research-oriented rather than a centralized
-  developer portal: the Bristol Research Portal (Pure, by Elsevier) exposes a
-  documented REST API and an OAI-PMH 2.0 interface over its open-access research
-  outputs, and data.bris is the institution's open research data repository with
-  DataCite DOIs. Department-level engineering groups (notably HPC and Computer
-  Science) publish open-source code on GitHub, but the university does not
-  operate a single unified institutional API/developer program.
+  The University of Bristol is a public research university in Bristol, United Kingdom, and a
+  member of the Russell Group. Its programmable footprint is small, real, and mostly indirect: it
+  operates no developer portal, no open-data platform and no central API programme, and
+  api.bris.ac.uk, developer.bristol.ac.uk, timetable.bristol.ac.uk and status.bristol.ac.uk do not
+  resolve. The one institution-operated, keyless, machine-readable API surface found is the
+  University of Bristol Research Portal OAI-PMH 2.0 endpoint at research-information.bris.ac.uk,
+  which advertises 590,974 records across 3,878 sets in seven metadata formats including the
+  OpenAIRE CERIF 1.2 profile, with no authentication — although its mandatory Identify verb
+  returns HTTP 500. Beyond it, Bristol operates a Shibboleth SAML 2.0 identity provider registered
+  in the UK Access Management Federation since 2010 and asserting REFEDS Research & Scholarship,
+  and data.bris, its own research data repository, which has minted 1,552 DataCite DOIs under the
+  institution's own prefix 10.5523/bris since 2012. Everything else that looks like a Bristol API
+  is a vendor's contract running under Bristol's name — Elsevier Pure for the research portal's
+  /ws/api web services, OCLC WorldCat Discovery for library search. Those relationships are
+  recorded here as tenant surfaces; the vendors' contracts are not.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
   label: Hosted service · you call their endpoint
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+    - openapi
+    - probes
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: self-serve
+  onboarding: none
   trial: false
   try_now: true
-  public: false
-  label: Free · Self-serve signup
+  public: true
+  label: Free · No signup, no key
   confidence: high
   source:
-    - plans
     - authentication
-  generated: '2026-07-22'
-  method: derived
-position: Consumer
-access: 3rd-Party
+    - probes
+  generated: '2026-08-30'
+  method: probed
+position: Provider
+access: Public
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-bristol.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-bristol/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
-  - Research
-  - Open Data
+  - Higher Education
+  - Education
   - United Kingdom
+  - Russell Group
+  - Research Data
+  - Research Repository
+  - Metadata Harvesting
+  - OAI-PMH
+  - Identity Federation
+  - Open Data
 created: '2026-06-03'
-modified: '2026-07-25'
+modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
-  - aid: university-of-bristol:university-of-bristol-data-set-api
-    name: University of Bristol data-set API
-    description: The data-set API from University of Bristol — 2 operation(s) for data-set.
+  - aid: university-of-bristol:research-portal-oai-pmh
+    name: University of Bristol Research Portal OAI-PMH
+    x-operator: institution
+    description: >-
+      The one institution-operated, keyless, machine-readable API surface the University of Bristol
+      publishes. OAI-PMH 2.0 metadata harvesting for the University of Bristol Research Portal,
+      served from the university's own registrable domain under its own identifier namespace
+      (oai:research-information.bris.ac.uk:...). Seven metadata formats are supported — mods, qdc,
+      oai_dc, oai_cerif_openaire (OpenAIRE CERIF profile 1.2), xmetadiss, nl_didl and uketd_dc —
+      across 3,878 sets, and ListRecords with oai_dc reports a completeListSize of 590,974 with a
+      page size of 100. Five of the six verbs execute anonymously; Identify returns HTTP 500 with a
+      Pure HTML error page, so the repository cannot describe itself, and that defect is recorded
+      rather than smoothed over. The research-information system behind the portal is Elsevier
+      Pure, but this interface is an open protocol on the institution's host under the
+      institution's identity — Elsevier's own product API at /ws/api is a separate, vendor-owned
+      surface and is recorded below as a tenant relationship, not as Bristol's.
+    humanURL: https://research-information.bris.ac.uk/ws/oai?verb=ListSets
+    baseURL: https://research-information.bris.ac.uk/ws/oai
+    tags:
+      - OAI-PMH
+      - Metadata Harvesting
+      - Research Repository
+      - Research Data
+      - Publications
+    properties:
+      - type: OpenAPI
+        url: openapi/university-of-bristol-research-portal-oai-pmh-openapi.yml
+      - type: Examples
+        url: examples/university-of-bristol-oai-pmh-examples.json
+      - type: Errors
+        url: errors/university-of-bristol-oai-pmh-errors.yml
+      - type: Conformance
+        url: conformance/university-of-bristol-domain-standards.yml
+      - type: Vocabulary
+        url: vocabulary/university-of-bristol-oai-pmh-vocabulary.yml
+      - type: Rules
+        url: rules/university-of-bristol-oai-pmh-spectral-rules.yml
+      - type: Authentication
+        url: authentication/university-of-bristol-authentication.yml
+      - type: Lifecycle
+        url: lifecycle/university-of-bristol-lifecycle.yml
+      - type: Documentation
+        url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+  - aid: university-of-bristol:idp-shibboleth
+    name: University of Bristol Identity Provider (Shibboleth / SAML 2.0)
+    x-operator: institution
+    description: >-
+      Bristol operates its own Shibboleth identity provider at idp.bris.ac.uk, publishing SAML 2.0
+      metadata anonymously at /idp/shibboleth (200, application/xml, 5,990 bytes) and registered in
+      the UK Access Management Federation as entityID https://idp.bris.ac.uk/shibboleth,
+      OrganizationName "University of Bristol", registrationAuthority http://ukfederation.org.uk,
+      registrationInstant 2010-09-09T16:18:44Z, with shibmd:Scope bris.ac.uk. The entity asserts the
+      REFEDS Research & Scholarship entity category. Both an IDPSSODescriptor and an
+      AttributeAuthorityDescriptor are present, with Shibboleth, SAML2 Redirect, SAML2 POST and
+      SAML2 POST-SimpleSign SSO bindings. A second, hide-from-discovery test IdP
+      (idp-dev.isys.bris.ac.uk, registered 2016-11-15) and one Bristol-owned service provider
+      (bristoluniversitypressdigital.com, registered 2022-01-26) are registered under the same
+      organization. Institution-operated by definition; the machine-readable artifact is XML
+      metadata rather than an HTTP API, so no OpenAPI is claimed.
+    humanURL: https://idp.bris.ac.uk/idp/shibboleth
+    baseURL: https://idp.bris.ac.uk/idp/profile/SAML2/Redirect/SSO
+    tags:
+      - Identity Federation
+      - SAML
+      - Shibboleth
+      - Single Sign-On
+      - UK Access Management Federation
+    properties:
+      - type: IdentityFederation
+        url: https://idp.bris.ac.uk/idp/shibboleth
+      - type: Conformance
+        url: conformance/university-of-bristol-domain-standards.yml
+      - type: Authentication
+        url: authentication/university-of-bristol-authentication.yml
+      - type: Documentation
+        url: https://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+  - aid: university-of-bristol:data-bris-research-data-repository
+    name: data.bris Research Data Repository
+    x-operator: institution
+    description: >-
+      data.bris is the University of Bristol's own research data repository — institution-built and
+      institution-hosted, not a Figshare, Dataverse or DSpace tenancy. DataCite lists it as client
+      BL.BRISTOL, "University of Bristol", a member since 2012, and 1,552 DOIs have been minted
+      under the institution's own prefix 10.5523/bris. It is a repository rather than an API: no
+      search, OAI-PMH or REST interface answered on this host, and https://data.bris.ac.uk/data/oai
+      returned 404. The dataset payload index at /datasets/ is a plain HTML directory listing served
+      anonymously. Recorded honestly as an operational problem, not padded over: the
+      DataCite-registered landing-page base https://data.bris.ac.uk/data/ returned HTTP 200 carrying
+      a "504 Gateway Timeout" body on first request and then reset the connection on every
+      subsequent attempt across a twenty-minute window on 2026-08-30, so every one of those 1,552
+      DOIs currently resolves (302) to an unreachable page.
+    humanURL: https://data.bris.ac.uk/datasets/
+    baseURL: https://data.bris.ac.uk/datasets/
+    tags:
+      - Research Data
+      - Open Data
+      - Research Repository
+      - DataCite
+      - DOI
+    properties:
+      - type: OpenData
+        url: https://data.bris.ac.uk/datasets/
+      - type: Conformance
+        url: conformance/university-of-bristol-domain-standards.yml
+      - type: Lifecycle
+        url: lifecycle/university-of-bristol-lifecycle.yml
+      - type: Documentation
+        url: https://www.bristol.ac.uk/staff/researchers/data/
+  - aid: university-of-bristol:pure-web-services
+    name: Elsevier Pure Web Services (University of Bristol tenancy)
+    x-operator: tenant
+    description: >-
+      TENANT RELATIONSHIP, NOT A BRISTOL CONTRACT. Bristol runs Elsevier Pure as its research
+      information system, and Pure's product API answers on Bristol's own host at
+      research-information.bris.ac.uk/ws/api. The data is Bristol's; the contract is Elsevier's.
+      The live OpenAPI at /ws/api/openapi.json (200, 1,740,065 bytes) declares info.title "Pure
+      API", info.contact.email pure-support@elsevier.com, version 5.35.3-4 and a RELATIVE
+      servers[] entry of /ws/api across 826 paths — a hostless spec that a host-based verdict
+      cannot classify, which is exactly the class this pipeline exists to catch. Access is api-key
+      gated with no self-serve issuance: GET /ws/api/524/research-outputs returned 401. Per
+      pipeline-university.md the relationship is recorded and the vendor's contract is NOT saved
+      under this institution's slug; it belongs to Elsevier's own repo. A hand-authored 493-line
+      subset of it, plus twenty-nine artifacts derived from it, were removed from this repository
+      on 2026-08-30 — see x-attribution-correction.
     humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
     baseURL: https://research-information.bris.ac.uk/ws/api
     tags:
-      - Dataset
-    tags_raw:
-      - data-set
+      - Research Repository
+      - Research Information
+      - Elsevier Pure
+      - Tenant
     properties:
-      - type: OpenAPI
-        url: openapi/university-of-bristol-data-set-api-openapi.yml
       - type: Documentation
         url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-research-output-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-person-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-dataset-schema.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-research-output-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-person-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-dataset-structure.json
-      - type: Examples
-        url: examples/university-of-bristol-research-output-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-person-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-dataset-list-example.json
-      - type: Rules
-        url: rules/university-of-bristol-rules.yml
-      - type: Vocabulary
-        url: vocabulary/university-of-bristol-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/university-of-bristol-context.jsonld
-  - aid: university-of-bristol:university-of-bristol-person-api
-    name: University of Bristol person API
-    description: The person API from University of Bristol — 2 operation(s) for person.
-    humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-    baseURL: https://research-information.bris.ac.uk/ws/api
+      - type: Authentication
+        url: authentication/university-of-bristol-authentication.yml
+  - aid: university-of-bristol:library-discovery-worldcat
+    name: University of Bristol Library Discovery (OCLC WorldCat Discovery)
+    x-operator: tenant
+    description: >-
+      TENANT RELATIONSHIP, NOT A BRISTOL CONTRACT. Bristol's library discovery layer is an OCLC
+      WorldCat Discovery tenancy at bris.on.worldcat.org — an institution-specific subdomain on the
+      vendor's platform (200 on 2026-08-30). Bristol also holds an Ex Libris SAML service provider
+      registered in the UK Access Management Federation at bristol-shib.hosted.exlibrisgroup.com.
+      Neither the OCLC nor the Ex Libris contract is Bristol's engineering and neither is saved
+      here. Recorded because the tenancy is a real institutional fact and one of the few
+      programmable surfaces the library has.
+    humanURL: https://bris.on.worldcat.org/
+    baseURL: https://bris.on.worldcat.org/
     tags:
-      - Persons
-    tags_raw:
-      - person
+      - Library
+      - Library Catalog
+      - Discovery
+      - Tenant
     properties:
-      - type: OpenAPI
-        url: openapi/university-of-bristol-person-api-openapi.yml
-      - type: Documentation
-        url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-research-output-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-person-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-dataset-schema.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-research-output-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-person-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-dataset-structure.json
-      - type: Examples
-        url: examples/university-of-bristol-research-output-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-person-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-dataset-list-example.json
-      - type: Rules
-        url: rules/university-of-bristol-rules.yml
-      - type: Vocabulary
-        url: vocabulary/university-of-bristol-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/university-of-bristol-context.jsonld
-  - aid: university-of-bristol:university-of-bristol-project-api
-    name: University of Bristol project API
-    description: The project API from University of Bristol — 2 operation(s) for project.
-    humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-    baseURL: https://research-information.bris.ac.uk/ws/api
-    tags:
-      - Project
-    tags_raw:
-      - project
-    properties:
-      - type: OpenAPI
-        url: openapi/university-of-bristol-project-api-openapi.yml
-      - type: Documentation
-        url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-research-output-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-person-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-dataset-schema.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-research-output-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-person-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-dataset-structure.json
-      - type: Examples
-        url: examples/university-of-bristol-research-output-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-person-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-dataset-list-example.json
-      - type: Rules
-        url: rules/university-of-bristol-rules.yml
-      - type: Vocabulary
-        url: vocabulary/university-of-bristol-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/university-of-bristol-context.jsonld
-  - aid: university-of-bristol:university-of-bristol-research-output-api
-    name: University of Bristol research-output API
-    description: The research-output API from University of Bristol — 2 operation(s) for research-output.
-    humanURL: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-    baseURL: https://research-information.bris.ac.uk/ws/api
-    tags: []
-    tags_raw:
-      - research-output
-    properties:
-      - type: OpenAPI
-        url: openapi/university-of-bristol-research-output-api-openapi.yml
-      - type: Documentation
-        url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-research-output-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-person-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-bristol-dataset-schema.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-research-output-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-person-structure.json
-      - type: JSONStructure
-        url: json-structure/university-of-bristol-dataset-structure.json
-      - type: Examples
-        url: examples/university-of-bristol-research-output-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-person-list-example.json
-      - type: Examples
-        url: examples/university-of-bristol-dataset-list-example.json
-      - type: Rules
-        url: rules/university-of-bristol-rules.yml
-      - type: Vocabulary
-        url: vocabulary/university-of-bristol-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/university-of-bristol-context.jsonld
+      - type: LibraryCatalog
+        url: https://bris.on.worldcat.org/
 common:
-  - type: CapabilityMap
-    url: capabilities/university-of-bristol-capability-edges.yml
-    name: University of Bristol Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/university-of-bristol-agentic-access.yml
-  - type: DomainSecurity
-    url: security/university-of-bristol-domain-security.yml
-  - type: Authentication
-    url: authentication/university-of-bristol-authentication.yml
   - type: Website
     url: https://www.bristol.ac.uk/
-  - type: DeveloperPortal
+  - type: Portal
     url: https://research-information.bris.ac.uk/
-  - type: GitHub
+  - type: ResearchRepository
+    url: https://research-information.bris.ac.uk/
+  - type: ResearchRepository
+    url: https://data.bris.ac.uk/datasets/
+  - type: OpenData
+    url: https://data.bris.ac.uk/datasets/
+  - type: IdentityFederation
+    url: https://idp.bris.ac.uk/idp/shibboleth
+  - type: IdentityFederation
+    url: https://www.ukfederation.org.uk/
+  - type: LibraryCatalog
+    url: https://bris.on.worldcat.org/
+  - type: AIPolicy
+    url: https://www.bristol.ac.uk/bilt/sharing-practice/guides/guidance-on-ai/
+  - type: AIPolicy
+    url: https://www.bristol.ac.uk/academic-quality/pg/ai-tools-and-thesis-writing/
+  - type: GitHubOrganization
     url: https://github.com/uob-hpc
   - type: SourceCode
     url: https://github.com/cs-uob
+  - type: Documentation
+    url: https://www.bristol.ac.uk/staff/researchers/data/
+  - type: TermsOfService
+    url: https://www.bristol.ac.uk/web/policies/terms/
+  - type: PrivacyPolicy
+    url: https://www.bristol.ac.uk/privacy/
+  - type: Support
+    url: https://www.bristol.ac.uk/it-services/advice/
   - type: LinkedIn
     url: https://www.linkedin.com/school/university-of-bristol/
+  - type: Conformance
+    url: conformance/university-of-bristol-domain-standards.yml
+  - type: Authentication
+    url: authentication/university-of-bristol-authentication.yml
+  - type: Lifecycle
+    url: lifecycle/university-of-bristol-lifecycle.yml
+  - type: DomainSecurity
+    url: security/university-of-bristol-domain-security.yml
   - type: Plans
     url: plans/university-of-bristol-plans-pricing.yml
   - type: RateLimits
@@ -230,8 +273,141 @@ common:
     url: finops/university-of-bristol-finops.yml
   - type: Review
     url: review.yml
-  - type: About
-    url: https://data.bris.ac.uk/data/
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    One institution-operated, keyless, machine-readable API surface was found, verified and
+    catalogued — the University of Bristol Research Portal OAI-PMH 2.0 endpoint at
+    research-information.bris.ac.uk/ws/oai, advertising 590,974 records across 3,878 sets in seven
+    metadata formats including the OpenAIRE CERIF 1.2 profile, with every tested verb executing
+    anonymously. Two live defects were observed there and are documented rather than hidden:
+    verb=Identify returns HTTP 500 with an HTML page instead of the mandatory OAI-PMH
+    self-description, and ListRecords under oai_cerif_openaire for openaire_cris_persons returns an
+    empty first page while advertising completeListSize=9750. Two further institution-operated
+    surfaces were confirmed: the Shibboleth SAML 2.0 identity provider at idp.bris.ac.uk, in the UK
+    Access Management Federation since 2010-09-09 asserting REFEDS Research & Scholarship; and
+    data.bris, Bristol's own research data repository, DataCite client BL.BRISTOL with 1,552 DOIs
+    under prefix 10.5523/bris. Coverage is otherwise thin because it genuinely is: Bristol operates
+    no developer portal and no open-data platform, and api.bris.ac.uk, developer.bristol.ac.uk,
+    developer.bris.ac.uk, timetable.bristol.ac.uk, status.bristol.ac.uk and library-search.bristol.ac.uk
+    do not resolve. The unit-programme-catalogue is a legacy JSP application that serves an
+    obfuscated JavaScript shim to a plain client and 403s on its .jsa endpoints, so there is no
+    course-catalog API. Two surface classes that look institutional are vendor contracts and are
+    recorded as tenant relationships without their contracts — Elsevier Pure at /ws/api on
+    Bristol's own host, and OCLC WorldCat Discovery at bris.on.worldcat.org. data.bris.ac.uk/data/
+    is the one genuinely broken institutional surface: HTTP 200 carrying a 504 Gateway Timeout body,
+    then connection resets, so all 1,552 DataCite DOIs currently resolve to an unreachable page.
+    www.linkedin.com returns 999 to non-browser clients; that is a bot block, and the pointer is
+    LIVE, not dead.
+  assessed: '2026-08-30'
+  method: pipeline-university.md STEP 1-6, live probes
+  evidence:
+    - url: https://research-information.bris.ac.uk/ws/oai?verb=ListMetadataFormats
+      status: 200
+    - url: https://research-information.bris.ac.uk/ws/oai?verb=ListSets
+      status: 200
+    - url: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_dc
+      status: 200
+    - url: https://research-information.bris.ac.uk/ws/oai?verb=Identify
+      status: 500
+    - url: https://research-information.bris.ac.uk/ws/api/openapi.json
+      status: 200
+    - url: https://research-information.bris.ac.uk/ws/api/524/research-outputs
+      status: 401
+    - url: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html
+      status: 200
+    - url: https://idp.bris.ac.uk/idp/shibboleth
+      status: 200
+    - url: https://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+      status: 200
+    - url: https://api.datacite.org/clients?query=bristol
+      status: 200
+    - url: https://api.datacite.org/dois?client-id=bl.bristol
+      status: 200
+    - url: https://data.bris.ac.uk/datasets/
+      status: 200
+    - url: https://data.bris.ac.uk/
+      status: 200
+    - url: https://data.bris.ac.uk/data/
+      status: 0
+    - url: https://data.bris.ac.uk/data/oai?verb=Identify
+      status: 404
+    - url: https://bris.on.worldcat.org/
+      status: 200
+    - url: https://www.bristol.ac.uk/
+      status: 200
+    - url: https://www.bristol.ac.uk/unit-programme-catalogue/
+      status: 200
+    - url: https://www.bris.ac.uk/unit-programme-catalogue/
+      status: 403
+    - url: https://www.bristol.ac.uk/llms.txt
+      status: 404
+    - url: https://www.bristol.ac.uk/.well-known/security.txt
+      status: 404
+    - url: https://www.linkedin.com/school/university-of-bristol/
+      status: 999
+    - url: https://api.bris.ac.uk/
+      status: 0
+    - url: https://developer.bristol.ac.uk/
+      status: 0
+    - url: https://developer.bris.ac.uk/
+      status: 0
+    - url: https://timetable.bristol.ac.uk/
+      status: 0
+    - url: https://status.bristol.ac.uk/
+      status: 0
+    - url: https://library-search.bristol.ac.uk/
+      status: 0
+x-attribution-correction:
+  applied: '2026-08-30'
+  by: pipeline-university.md STEP 6b, file-by-file
+  removed_entries: 4
+  removed_files: 30
+  what: >-
+    Four apis[] entries and thirty artifact files, all derived from ONE saved copy of Elsevier's
+    Pure product contract. openapi/_original/university-of-bristol-pure-research-api.yaml carried
+    info.title "Pure API" and a description that names "the University of Bristol Research Portal
+    (Pure, by Elsevier)" outright; it was a hand-authored 493-line read-only subset of a vendor
+    document, and it rewrote the contact from Elsevier's real pure-support@elsevier.com to a
+    pure-support@bristol.ac.uk address that does not appear in the live specification, and stated
+    version 5.34.1 where the live document says 5.35.3-4. refine-openapis then split it into four
+    per-tag documents (data-set, person, project, research-output) and four apis[] entries,
+    three JSON Schemas, three JSON Structures, three example sets, eight collection documents, a
+    JSON-LD context, a vocabulary, two rulesets, an agentic-access card, capability edges and two
+    refine reports were derived from it. Every one inherited Elsevier's provenance.
+  audit-divergence: >-
+    audit-university-contracts.py reaches its verdict from the HOSTNAME, and
+    research-information.bris.ac.uk IS a bris.ac.uk subdomain, so the audit read all nine surfaces
+    here as `institution` and reported hostless: none, shared_contract: none, misbased: none. That
+    verdict is right about the host and wrong about the contract. This is the `shared_contract`
+    class the contract describes for Pure and Dataverse deployments: the deployment is Bristol's,
+    the document is the vendor's. Two things kept it out of the cohort-derived detector — the saved
+    copy's title had been localized away from the vendor's own, and the live document's servers[]
+    entry is the RELATIVE /ws/api, so host_of() returns nothing. The x-operator values in this file
+    are the more precise call, reached from what each surface says about itself. Do not let a later
+    host-based pass overwrite them.
+  shared-contract-false-positive: >-
+    The audit flags openapi/university-of-bristol-research-portal-oai-pmh-openapi.yml as a shared
+    contract because the University of York ships a spec whose normalized title matches
+    ("<Institution> Research Portal OAI-PMH"). It is not shared. Both were independently derived
+    from each institution's own live endpoint, and the documents differ in host, metadata formats,
+    set hierarchy, record count and observed defects — Bristol advertises seven metadata formats
+    including uketd_dc and the OpenAIRE CERIF 1.2 profile across 3,878 sets with a broken Identify
+    verb. This is the same class of false positive the contract already records for Washington's
+    uw.edu contact domain and for Macquarie's OAI-PMH document.
+  own-domain-note: >-
+    Bristol uses TWO registrable domains — bristol.ac.uk for the public web and the legacy
+    bris.ac.uk for research-information, idp and data.bris. Both are Bristol's. A `Portal` pointer
+    to https://research-information.bris.ac.uk/ is present in common[] specifically so
+    institution_domains() in audit-university-contracts.py can see bris.ac.uk; without it the audit
+    reads every one of this repo's own hosts as `unknown`.
+  note: >-
+    The tenant relationship was NOT deleted. Bristol genuinely runs Pure, the data in it is
+    Bristol's, and the relationship survives as university-of-bristol:pure-web-services with
+    x-operator tenant. Only the contract and its derivatives went. In their place the repository now
+    holds a contract for a surface Bristol actually operates itself — the OAI-PMH endpoint — derived
+    from live probes, not from documentation and not from another institution's deployment.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
