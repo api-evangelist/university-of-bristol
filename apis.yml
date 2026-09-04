@@ -45,7 +45,7 @@ accessModel:
     - probes
   generated: '2026-08-30'
   method: probed
-position: Provider
+position: Producing
 access: Public
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-bristol.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-bristol/refs/heads/main/apis.yml
