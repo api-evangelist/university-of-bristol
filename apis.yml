@@ -85,6 +85,12 @@ apis:
   - Identity Federation
   - SAML
   - Shibboleth
+  - SSO
+  - UK Access Management Federation
+  tags_raw:
+  - Identity Federation
+  - SAML
+  - Shibboleth
   - Single Sign-On
   - UK Access Management Federation
   properties:
@@ -147,6 +153,11 @@ apis:
   - Research Repository
   - Research Information
   - Elsevier Pure
+  - Tenants
+  tags_raw:
+  - Research Repository
+  - Research Information
+  - Elsevier Pure
   - Tenant
   properties:
   - type: Documentation
@@ -166,6 +177,11 @@ apis:
   humanURL: https://bris.on.worldcat.org/
   baseURL: https://bris.on.worldcat.org/
   tags:
+  - Library
+  - Library Catalog
+  - Discovery
+  - Tenants
+  tags_raw:
   - Library
   - Library Catalog
   - Discovery
