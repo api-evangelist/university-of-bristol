@@ -1,0 +1,145 @@
+openapi: 3.2.0
+info:
+  title: University of Bristol Research Portal OAI PMH API
+  summary: Institution-operated OAI-PMH 2.0 metadata harvesting interface for the University of Bristol Research Portal.
+  description: 'Keyless, public OAI-PMH 2.0 harvesting interface operated by the University of Bristol at
+
+    `research-information.bris.ac.uk`, on the university''s own registrable domain (`bris.ac.uk`).'
+  version: '2.0'
+  contact:
+    name: University of Bristol Research Information Support
+    url: https://research-information.bris.ac.uk/
+  license:
+    name: OpenArchives Initiative Protocol for Metadata Harvesting 2.0
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+  x-provenance:
+    generated: '2026-08-30'
+    method: derived
+    source: live unauthenticated probes of https://research-information.bris.ac.uk/ws/oai
+  x-operator: institution
+servers:
+- url: https://research-information.bris.ac.uk/ws/oai
+  description: University of Bristol Research Portal OAI-PMH 2.0 base URL (keyless)
+tags:
+- name: oai pmh
+  description: OpenArchives Initiative Protocol for Metadata Harvesting 2.0 verbs.
+paths:
+  /:
+    get:
+      tags:
+      - oai pmh
+      summary: OAI-PMH 2.0 request
+      operationId: oaiPmhRequest
+      description: 'Single OAI-PMH 2.0 endpoint. The `verb` query parameter selects the operation. All six
+
+        verbs execute anonymously; no API key, token or affiliation is required.
+
+
+        `Identify` is the one verb that does NOT work on this deployment: it returned HTTP 500 with
+
+        an HTML error page on 2026-08-30. Every other verb returned a well-formed OAI-PMH XML
+
+        document.'
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: The OAI-PMH verb to execute.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+        examples:
+          listSets:
+            value: ListSets
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: 'Metadata format. Required for `ListIdentifiers`, `ListRecords` and `GetRecord`.
+
+          Seven prefixes were observed as supported.'
+        schema:
+          type: string
+          enum:
+          - mods
+          - qdc
+          - oai_dc
+          - oai_cerif_openaire
+          - xmetadiss
+          - nl_didl
+          - uketd_dc
+      - name: identifier
+        in: query
+        required: false
+        description: OAI identifier of a single record. Required for `GetRecord`.
+        schema:
+          type: string
+          examples:
+          - oai:research-information.bris.ac.uk:openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9
+      - name: set
+        in: query
+        required: false
+        description: 'Set to restrict a selective harvest to. 3,878 sets were observed. An unsupported value
+
+          returns `badArgument`, not `noSetHierarchy`.'
+        schema:
+          type: string
+          examples:
+          - openaire_cris_publications
+          - publications:withFiles
+      - name: from
+        in: query
+        required: false
+        description: Lower bound of the datestamp range for selective harvesting.
+        schema:
+          type: string
+          examples:
+          - '2025-01-01T00:00:00Z'
+      - name: until
+        in: query
+        required: false
+        description: Upper bound of the datestamp range for selective harvesting.
+        schema:
+          type: string
+          examples:
+          - '2026-01-01T00:00:00Z'
+      - name: resumptionToken
+        in: query
+        required: false
+        description: 'Flow-control token from a previous incomplete list. Exclusive — combining it with
+
+          `metadataPrefix` returns `badArgument` ("resumptionToken is exclusive!").'
+        schema:
+          type: string
+          examples:
+          - oai_dc/590974/496378582/100/0/641556/x/x/x
+      responses:
+        '200':
+          description: 'An OAI-PMH 2.0 XML response. Protocol-level failures are ALSO returned as 200 with an
+
+            `<error code="...">` element — read the body, not the status.'
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                listSets:
+                  summary: ListSets (observed 2026-08-30)
+                  externalValue: https://research-information.bris.ac.uk/ws/oai?verb=ListSets
+                badVerb:
+                  summary: Protocol error carried inside a 200
+                  externalValue: https://research-information.bris.ac.uk/ws/oai?verb=Bogus
+        '500':
+          description: 'Observed for `?verb=Identify` only. Returns a `text/html` Pure error page titled
+
+            "500 Internal server error", not an OAI-PMH document.'
+          content:
+            text/html:
+              schema:
+                type: string

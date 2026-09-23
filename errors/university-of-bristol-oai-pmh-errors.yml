@@ -1,0 +1,75 @@
+generated: '2026-08-30'
+method: probed
+source: https://research-information.bris.ac.uk/ws/oai
+x-operator: institution
+note: >-
+  The University of Bristol publishes no error reference for this endpoint. Every condition below
+  was PROVOKED against the live, unauthenticated endpoint on 2026-08-30 and the error element is
+  quoted verbatim from the response body. OAI-PMH 2.0 returns HTTP 200 for protocol-level errors
+  and signals the condition inside an <error code="..."> element, so a client that reads only the
+  status code will treat every one of these as a success.
+transport:
+  protocol_errors_use_http_status: false
+  protocol_error_http_status: 200
+  protocol_error_element: OAI-PMH/error[@code]
+  content_type: text/xml
+errors:
+  - code: badVerb
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=Bogus
+    message: >-
+      Value of the verb argument is not a legal OAI-PMH verb, the verb argument is missing, or the
+      verb argument is repeated.
+    also_returned_for: https://research-information.bris.ac.uk/ws/oai
+  - code: badArgument
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=GetRecord
+    message: >-
+      The request includes illegal arguments or is missing required arguments. metadataPrefix is
+      required.
+  - code: badArgument
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_dc&set=nosuchset
+    message: >-
+      The request includes illegal arguments or is missing required arguments. nosuchset is either
+      not supported or has been disabled!
+    deviation: >-
+      OAI-PMH 2.0 specifies noRecordsMatch or noSetHierarchy for set problems; this deployment
+      answers an unknown set with badArgument.
+  - code: badArgument
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=ListIdentifiers&metadataPrefix=oai_dc&resumptionToken=garbage
+    message: >-
+      The request includes illegal arguments or is missing required arguments. resumptionToken is
+      exclusive!
+    deviation: >-
+      A malformed resumptionToken combined with metadataPrefix is reported as an exclusivity
+      violation rather than badResumptionToken; badResumptionToken was not observed.
+  - code: cannotDisseminateFormat
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=bogus_xyz
+    message: The value of the metadataPrefix argument is not supported by the repository.
+  - code: idDoesNotExist
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:research-information.bris.ac.uk:nope
+    message: The value of the identifier argument is unknown or illegal in this repository.
+non_protocol_failures:
+  - condition: Identify verb
+    http_status: 500
+    content_type: text/html;charset=ISO-8859-1
+    request: https://research-information.bris.ac.uk/ws/oai?verb=Identify
+    detail: >-
+      A Pure HTML error page titled "500 Internal server error" is returned instead of an OAI-PMH
+      Identify response. This is a real defect in Bristol's deployment: the mandatory OAI-PMH 2.0
+      self-description verb does not work, and no OAI-PMH error element is emitted.
+  - condition: Empty first page under the OpenAIRE CERIF profile for persons
+    http_status: 200
+    request: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_cerif_openaire&set=openaire_cris_persons
+    detail: >-
+      A well-formed 200 with an empty <ListRecords> containing only a resumptionToken advertising
+      completeListSize="9750". Naive harvesters that stop on an empty page will harvest nothing.
+not_observed:
+  - badResumptionToken
+  - noRecordsMatch
+  - noMetadataFormats
+  - noSetHierarchy

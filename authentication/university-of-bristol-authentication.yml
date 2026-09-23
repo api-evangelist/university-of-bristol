@@ -1,16 +1,71 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/university-of-bristol-pure-research-api.yaml
+generated: '2026-08-30'
+method: probed
+source: live unauthenticated probes of University of Bristol hosts on 2026-08-30
+note: >-
+  REPLACES the 2026-07-11 version of this file, which was derived from
+  openapi/university-of-bristol-pure-research-api.yaml — a hand-authored subset of Elsevier's Pure
+  product contract that has been removed from this repository as vendor-operated. Authentication is
+  now recorded per surface, with the operator of each surface named.
 summary:
   types:
-  - apiKey
-  api_key_in:
-  - header
-schemes:
-- name: api-key
-  type: apiKey
-  in: header
-  parameter: api-key
-  description: Security mechanism for the API
-  sources:
-  - openapi/university-of-bristol-pure-research-api.yaml
+    - none
+    - apiKey
+    - saml
+  institution_operated_keyless_surfaces: 2
+surfaces:
+  - id: research-portal-oai-pmh
+    x-operator: institution
+    endpoint: https://research-information.bris.ac.uk/ws/oai
+    scheme: none
+    detail: >-
+      No API key, token, cookie or affiliation is required. Every OAI-PMH verb tested on 2026-08-30
+      executed anonymously; five returned well-formed OAI-PMH 2.0 XML and Identify returned HTTP 500.
+    evidence:
+      - url: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_dc
+        status: 200
+        detail: 100 records returned with no credential presented.
+  - id: idp-shibboleth-metadata
+    x-operator: institution
+    endpoint: https://idp.bris.ac.uk/idp/shibboleth
+    scheme: none
+    detail: >-
+      SAML 2.0 IdP metadata is served anonymously. The identity service itself is of course
+      credential-gated; the METADATA describing it is public, which is what makes it a
+      machine-readable surface.
+    evidence:
+      - url: https://idp.bris.ac.uk/idp/shibboleth
+        status: 200
+        detail: 5,990 bytes of application/xml SAML 2.0 metadata, no credential presented.
+  - id: idp-shibboleth-sso
+    x-operator: institution
+    endpoint: https://idp.bris.ac.uk/idp/profile/SAML2/Redirect/SSO
+    scheme: saml
+    detail: >-
+      SAML 2.0 web browser SSO. Bindings observed in the live metadata: Shibboleth/SSO,
+      SAML2/POST/SSO, SAML2/POST-SimpleSign/SSO, SAML2/Redirect/SSO. Trust is established through
+      the UK Access Management Federation, not through a self-serve credential; scope bris.ac.uk;
+      REFEDS Research & Scholarship entity category asserted.
+  - id: data-bris-research-data-repository
+    x-operator: institution
+    endpoint: https://data.bris.ac.uk/datasets/
+    scheme: none
+    detail: >-
+      Open dataset payload index served without credentials. Individual datasets may carry their own
+      access conditions; the index itself answered anonymously (200, 315,475 bytes).
+tenant_surfaces:
+  - id: pure-web-services
+    x-operator: tenant
+    endpoint: https://research-information.bris.ac.uk/ws/api
+    scheme: apiKey
+    detail: >-
+      Elsevier Pure Web Services running under the institution's host. api-key gated; no key is
+      issued self-serve. Verified 2026-08-30: GET /ws/api/524/research-outputs returned 401 with no
+      key. The OpenAPI describing it is Elsevier's product contract
+      (info.title "Pure API", info.contact.email pure-support@elsevier.com, 826 paths) and is
+      deliberately NOT stored in this repository.
+    evidence:
+      - url: https://research-information.bris.ac.uk/ws/api/524/research-outputs
+        status: 401
+      - url: https://research-information.bris.ac.uk/ws/api/openapi.json
+        status: 200
+        detail: The vendor's own contract, publicly readable, 1,740,065 bytes.

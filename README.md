@@ -64,26 +64,67 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The University of Bristol is a public research university in Bristol, United Kingdom, ranked #58 in the QS World University Rankings 2025. This repository catalogs the institution's public developer/API footprint as an APIs.json provider profile. Bristol's strongest verifiable public API surface is research-oriented — the Bristol Research Portal (Elsevier Pure) with a documented REST API and OAI-PMH endpoint, plus the data.bris open research data repository.
+The University of Bristol is a public research university in Bristol, United Kingdom, and a member
+of the Russell Group. This repository catalogs the institution's public developer/API footprint as
+an APIs.json provider profile. Bristol's one institution-operated, keyless, machine-readable API
+surface is the Research Portal OAI-PMH 2.0 endpoint on its own domain. It also operates a
+Shibboleth SAML identity provider and data.bris, its own DataCite-registered research data
+repository. Everything else that looks like a Bristol API is a vendor's contract running under
+Bristol's name and is recorded here as a tenant relationship, not as Bristol's.
 
 - APIs.json: https://raw.githubusercontent.com/api-evangelist/university-of-bristol/refs/heads/main/apis.yml
 - Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=university-of-bristol-api-evangelist&utm_content=repo
 
 ## Type
 
-- Type: Index
-- Position: Consumer
-- Access: 3rd-Party
+- Type: Index (university)
+- Category: Public Research University
+- Position: Provider
+- Access: Public
 
 ## Tags
 
-Education, Higher Education, University, Research, Open Data, United Kingdom
+University, Higher Education, Education, United Kingdom, Russell Group, Research Data, Research
+Repository, Metadata Harvesting, OAI-PMH, Identity Federation, Open Data
 
 ## APIs
 
-- **Bristol Research Portal (Pure) API** — REST web services API for the Pure-powered research portal, documented with an OpenAPI 3.0.1 spec. Docs: https://research-information.bris.ac.uk/ws/api/524/api-docs/index.html | OpenAPI: https://research-information.bris.ac.uk/ws/api/openapi.json
-- **Bristol Research Portal OAI-PMH** — OAI-PMH 2.0 metadata harvesting interface for the "University of Bristol Open Access Interface Repository". Endpoint: https://research-information.bris.ac.uk/ws/oai
-- **data.bris Research Data Repository** — Open research data repository with DataCite DOIs. Docs: https://data.bris.ac.uk/data/about (no standard machine API path confirmed live)
+Every surface carries an `x-operator` saying who runs the thing it describes.
+
+**Institution-operated**
+
+- **University of Bristol Research Portal OAI-PMH** (`x-operator: institution`) — OAI-PMH 2.0
+  metadata harvesting on the university's own registrable domain, keyless. Seven metadata formats
+  (mods, qdc, oai_dc, oai_cerif_openaire, xmetadiss, nl_didl, uketd_dc), 3,878 sets, a
+  `completeListSize` of 590,974 under `oai_dc`. Endpoint:
+  https://research-information.bris.ac.uk/ws/oai — OpenAPI:
+  [openapi/university-of-bristol-research-portal-oai-pmh-openapi.yml](openapi/university-of-bristol-research-portal-oai-pmh-openapi.yml)
+  (derived by API Evangelist from live probes; Bristol publishes no such document).
+- **University of Bristol Identity Provider** (`x-operator: institution`) — Shibboleth / SAML 2.0
+  metadata served anonymously at https://idp.bris.ac.uk/idp/shibboleth, registered in the UK Access
+  Management Federation since 2010-09-09, scope `bris.ac.uk`, asserting REFEDS Research &
+  Scholarship. XML metadata, not an HTTP API, so no OpenAPI is claimed.
+- **data.bris Research Data Repository** (`x-operator: institution`) — Bristol's own research data
+  repository, not a Figshare or Dataverse tenancy. DataCite client `BL.BRISTOL` since 2012, 1,552
+  DOIs under the institution's own prefix `10.5523/bris`. Repository, not an API.
+
+**Tenant relationships — the vendors' contracts are NOT stored here**
+
+- **Elsevier Pure Web Services** (`x-operator: tenant`) — Pure's product API answers on Bristol's
+  own host at `/ws/api`, but the contract is Elsevier's: `info.title` "Pure API",
+  `info.contact.email` `pure-support@elsevier.com`, relative `servers: [/ws/api]`, 826 paths,
+  api-key gated (401 without a key).
+- **OCLC WorldCat Discovery** (`x-operator: tenant`) — library discovery at bris.on.worldcat.org.
+
+## Known defects, recorded as observed
+
+- `?verb=Identify` on the OAI-PMH endpoint returns **HTTP 500** with an HTML page instead of the
+  mandatory OAI-PMH self-description.
+- `ListRecords` with `metadataPrefix=oai_cerif_openaire&set=openaire_cris_persons` returns a 200
+  with an **empty first page** while advertising `completeListSize="9750"`.
+- `https://data.bris.ac.uk/data/` returned HTTP 200 carrying a **504 Gateway Timeout** body and then
+  reset the connection on every retry, so all 1,552 DataCite DOIs currently resolve to an
+  unreachable landing page.
 
 ## Plans / Rate Limits / FinOps
 
@@ -94,19 +135,32 @@ Education, Higher Education, University, Research, Open Data, United Kingdom
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-08-30
 
 ## Common Properties
 
 - Website: https://www.bristol.ac.uk/
-- Developer Portal: https://research-information.bris.ac.uk/
+- Research Repository: https://research-information.bris.ac.uk/
+- Open Data: https://data.bris.ac.uk/datasets/
+- Identity Federation: https://idp.bris.ac.uk/idp/shibboleth
+- AI Policy: https://www.bristol.ac.uk/bilt/sharing-practice/guides/guidance-on-ai/
 - GitHub: https://github.com/uob-hpc
 - Source Code: https://github.com/cs-uob
 - LinkedIn: https://www.linkedin.com/school/university-of-bristol/
 
 ## Notes
 
-All catalogued API endpoints were probed live during review. The Pure REST API, its OpenAPI 3.0.1 spec, and the OAI-PMH 2.0 endpoint each returned HTTP 200. data.bris is a confirmed open data repository, but its standard CKAN API path (`/api/3/action/package_list`) returned 404, so no machine API endpoint was catalogued for it. The university operates no single unified institutional developer portal; the GitHub organizations listed are department-level (HPC, Computer Science) and publish open-source code rather than institutional APIs. No public status page resolved. No endpoints were fabricated.
+Re-profiled 2026-08-30 under `pipeline-university.md`. The June 2026 profile credited Bristol with
+a hand-authored 493-line subset of **Elsevier's Pure product contract**, saved as
+`openapi/_original/university-of-bristol-pure-research-api.yaml` with `info.title` "Pure API". That
+document and twenty-nine artifacts derived from it — four per-tag OpenAPIs and four `apis[]`
+entries, three JSON Schemas, three JSON Structures, three example sets, eight collection documents,
+a JSON-LD context, a vocabulary, two rulesets, an agentic-access card and capability edges — have
+been removed, because they described a vendor's engineering under the institution's name. The
+tenant relationship was kept; only the contract went. In its place the repository now holds a
+contract for a surface Bristol actually operates itself, derived from live unauthenticated probes
+on 2026-08-30. Correcting this attribution lowers Bristol's score, and that is the correction
+working. No endpoints were fabricated.
 
 ## Maintainers
 

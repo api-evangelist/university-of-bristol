@@ -1,0 +1,115 @@
+generated: '2026-08-30'
+method: derived
+source: https://research-information.bris.ac.uk/ws/oai
+x-operator: institution
+note: >-
+  Vocabulary of the University of Bristol Research Portal OAI-PMH interface, DERIVED from live
+  responses observed on 2026-08-30. Terms marked observed:true were seen in an actual response
+  body. The protocol terms are the OpenArchives Initiative's, not Bristol's; the sets, prefixes and
+  identifier namespace below are this deployment's.
+name: University of Bristol Research Portal OAI-PMH Vocabulary
+identifier_namespace:
+  pattern: 'oai:research-information.bris.ac.uk:{setSpec}/{uuid}'
+  observed: true
+  example: 'oai:research-information.bris.ac.uk:openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9'
+verbs:
+  - term: Identify
+    observed: false
+    note: HTTP 500 on this deployment (probed 2026-08-30).
+  - term: ListMetadataFormats
+    observed: true
+  - term: ListSets
+    observed: true
+  - term: ListIdentifiers
+    observed: true
+  - term: ListRecords
+    observed: true
+  - term: GetRecord
+    observed: true
+    note: Observed only through its badArgument and idDoesNotExist responses.
+metadata_formats:
+  - prefix: mods
+    schema: http://www.loc.gov/mods/v3/mods-3-8.xsd
+    namespace: http://www.loc.gov/mods/v3
+    observed: true
+  - prefix: qdc
+    schema: http://www.openarchives.org/OAI/2.0/oai_dc.xsd
+    namespace: http://www.openarchives.org/OAI/2.0/oai_dc/
+    observed: true
+  - prefix: oai_dc
+    schema: http://www.openarchives.org/OAI/2.0/oai_dc.xsd
+    namespace: http://www.openarchives.org/OAI/2.0/oai_dc/
+    observed: true
+  - prefix: oai_cerif_openaire
+    schema: https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd
+    namespace: https://www.openaire.eu/cerif-profile/1.2/
+    observed: true
+  - prefix: xmetadiss
+    schema: http://files.dnb.de/standards/xmetadiss/xmetadiss.xsd
+    namespace: http://www.d-nb.de/standards/xmetadissplus/
+    observed: true
+  - prefix: nl_didl
+    schema: http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-21_schema_files/did/didl.xsd
+    namespace: 'urn:mpeg:mpeg21:2002:02-DIDL-NS'
+    observed: true
+  - prefix: uketd_dc
+    schema: http://naca.central.cranfield.ac.uk/ethos-oai/2.0/uketd_dc.xsd
+    namespace: http://naca.central.cranfield.ac.uk/ethos-oai/2.0/
+    observed: true
+set_families:
+  observed_total: 3878
+  openaire_cris:
+    note: The seven OpenAIRE CRIS sets, matching the CERIF 1.2 profile advertised in every response.
+    members:
+      - openaire_cris_publications
+      - openaire_cris_patents
+      - openaire_cris_persons
+      - openaire_cris_orgunits
+      - openaire_cris_events
+      - openaire_cris_equipments
+      - openaire_cris_products
+  pure_native:
+    members:
+      - setSpec: 'persons:all'
+        setName: PURE Persons
+      - setSpec: 'publications:all'
+        setName: PURE publications
+      - setSpec: 'publications:withFiles'
+        setName: PURE publications (with associated files)
+    per_year_pattern: 'publications:year{N} and publications:year{N}:withFiles'
+flow_control:
+  page_size: 100
+  observed: true
+  resumption_token_shape: '{metadataPrefix}/{completeListSize}/{sessionId}/{pageSize}/{page}/{cursor}/{set|x}/{from|x}/{until|x}'
+  resumption_token_example: 'oai_dc/590974/496378582/100/0/641556/x/x/x'
+  complete_list_size:
+    - selector: 'oai_dc, no set'
+      value: 590974
+    - selector: 'oai_cerif_openaire, set=openaire_cris_persons'
+      value: 9750
+cerif_elements_observed:
+  - cerif:Publication
+  - cerif:Title
+  - cerif:Subtitle
+  - cerif:PublicationDate
+  - cerif:Status
+  - cerif:Language
+  - cerif:Handle
+  - cerif:URL
+  - cerif:Authors
+  - cerif:Author
+  - cerif:Person
+  - cerif:PersonName
+  - cerif:FirstNames
+  - cerif:FamilyNames
+  - cerif:Publishers
+  - cerif:Publisher
+  - cerif:OrgUnit
+  - cerif:Name
+  - cerif:ISBN
+  - cerif:Edition
+not_present:
+  - term: ORCID
+    detail: No ORCID identifier appeared in the CERIF person or publication records harvested.
+  - term: DOI
+    detail: No DOI element appeared on the first CERIF publications page; dc:identifier carried portal URLs and urn:ISBN values.

@@ -1,0 +1,22 @@
+{
+  "provider": "university-of-bristol",
+  "sources": [
+    "_original/university-of-bristol-research-portal-oai-pmh-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-bristol-oai-pmh-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "university-of-bristol-research-portal-oai-pmh-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/university-of-bristol-research-portal-oai-pmh.yaml: archived document superseded by a larger archived document",
+    "university-of-bristol-oai-pmh-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

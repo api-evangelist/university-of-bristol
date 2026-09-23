@@ -1,0 +1,83 @@
+# generated: '2026-08-30'
+# method: derived
+# source: openapi/university-of-bristol-research-portal-oai-pmh-openapi.yml
+# x-operator: institution
+# Spectral ruleset for the University of Bristol Research Portal OAI-PMH contract. Built-in
+# functions only. Written by API Evangelist; the University of Bristol publishes no ruleset.
+extends: []
+rules:
+  bristol-oai-single-base-url:
+    description: The OAI-PMH contract must declare exactly one base URL, the institution's own host.
+    message: 'OAI-PMH declares one base URL; found {{value}} servers.'
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: length
+      functionOptions:
+        max: 1
+        min: 1
+  bristol-oai-institution-host:
+    description: The base URL must sit on the institution's registrable domain, not a vendor host.
+    message: 'Base URL must be on research-information.bris.ac.uk — found {{value}}.'
+    severity: error
+    given: $.servers[0].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://research-information\.bris\.ac\.uk/ws/oai$'
+  bristol-oai-operator-declared:
+    description: The contract must declare who operates the surface it describes.
+    message: 'info.x-operator must be present and must be "institution".'
+    severity: error
+    given: $.info
+    then:
+      field: x-operator
+      function: pattern
+      functionOptions:
+        match: '^institution$'
+  bristol-oai-provenance-declared:
+    description: Every artifact must carry provenance; an unmarked artifact is credited to the institution.
+    message: 'info.x-provenance.method must be present.'
+    severity: error
+    given: $.info.x-provenance
+    then:
+      field: method
+      function: truthy
+  bristol-oai-verb-enumerated:
+    description: The verb parameter must enumerate the six OAI-PMH 2.0 verbs.
+    message: 'The verb parameter must be an enum of the six OAI-PMH verbs.'
+    severity: error
+    given: $.paths['/'].get.parameters[?(@.name=='verb')].schema
+    then:
+      field: enum
+      function: length
+      functionOptions:
+        min: 6
+        max: 6
+  bristol-oai-metadata-prefix-enumerated:
+    description: metadataPrefix must enumerate only the prefixes observed on this deployment.
+    message: 'metadataPrefix must be a closed enum of observed prefixes.'
+    severity: warn
+    given: $.paths['/'].get.parameters[?(@.name=='metadataPrefix')].schema
+    then:
+      field: enum
+      function: truthy
+  bristol-oai-500-documented:
+    description: The observed Identify defect must stay documented; removing it hides a real failure.
+    message: 'The 500 response observed for verb=Identify must remain documented.'
+    severity: error
+    given: $.paths['/'].get.responses
+    then:
+      field: '500'
+      function: truthy
+  bristol-oai-license-declared:
+    description: The contract must name the protocol it implements as its licence/spec reference.
+    message: 'info.license.url must point at the OAI-PMH 2.0 protocol.'
+    severity: warn
+    given: $.info.license
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: 'openarchivesprotocol'

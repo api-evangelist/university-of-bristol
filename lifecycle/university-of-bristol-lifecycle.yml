@@ -1,0 +1,68 @@
+generated: '2026-08-30'
+method: probed
+x-operator: institution
+provider: University of Bristol
+providerId: university-of-bristol
+note: >-
+  Lifecycle posture for the University of Bristol's institution-operated surfaces, read from live
+  probes on 2026-08-30. The University of Bristol publishes no versioning policy, deprecation
+  policy, changelog or status page for any of these surfaces; every "none_found" below is a
+  measured absence, not an assumption.
+surfaces:
+  - id: research-portal-oai-pmh
+    endpoint: https://research-information.bris.ac.uk/ws/oai
+    protocol_version: OAI-PMH 2.0
+    versioning:
+      scheme: protocol-versioned
+      detail: >-
+        Versioned by the OpenArchives protocol, not by the institution. No institution-controlled
+        version identifier appears in the base URL or in any response.
+    deprecation_policy: none_found
+    changelog: none_found
+    status_page: none_found
+    sunset_headers: not_observed
+    stability_observed:
+      - date: '2026-08-30'
+        finding: >-
+          Five of six verbs answered correctly. verb=Identify returned HTTP 500 with an HTML error
+          page — an outstanding defect at probe time, not a deprecation.
+        second_finding: >-
+          ListRecords with metadataPrefix=oai_cerif_openaire and set=openaire_cris_persons returned
+          an empty first page despite advertising completeListSize=9750.
+  - id: idp-shibboleth
+    endpoint: https://idp.bris.ac.uk/idp/shibboleth
+    protocol_version: SAML 2.0
+    versioning:
+      scheme: federation-metadata
+      detail: >-
+        Lifecycle is governed by UK Access Management Federation metadata refresh, not by an
+        institution-published API version. Registered 2010-09-09T16:18:44Z; still present in the
+        federation aggregate on 2026-08-30.
+    deprecation_policy: none_found
+    changelog: none_found
+    status_page: none_found
+  - id: data-bris-research-data-repository
+    endpoint: https://data.bris.ac.uk/
+    versioning:
+      scheme: doi-versioned
+      detail: >-
+        Datasets are identified by DataCite DOIs under the institution's own prefix 10.5523/bris;
+        1,552 DOIs registered as of 2026-08-30.
+    deprecation_policy: none_found
+    changelog: none_found
+    status_page: none_found
+    stability_observed:
+      - date: '2026-08-30'
+        finding: >-
+          The DataCite-registered landing-page base https://data.bris.ac.uk/data/ returned HTTP 200
+          carrying a "504 Gateway Timeout" body on first request and then reset the connection
+          ("Recv failure: Connection reset by peer") on every subsequent attempt across a
+          twenty-minute window. https://data.bris.ac.uk/ (200) and
+          https://data.bris.ac.uk/datasets/ (200, a plain directory index of dataset payloads)
+          both answered normally. DOIs resolve (302) to the unreachable /data/ path.
+tenant_surfaces_excluded:
+  - id: pure-web-services
+    endpoint: https://research-information.bris.ac.uk/ws/api
+    reason: >-
+      Elsevier's product contract, not the institution's. Lifecycle is Elsevier's release train
+      (live document reports Pure API version 5.35.3-4 on 2026-08-30); it is not scored here.

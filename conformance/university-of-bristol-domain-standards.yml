@@ -1,0 +1,105 @@
+generated: '2026-08-30'
+method: probed
+regime: education
+note: >-
+  Domain-standard conformance for the Kin Score `education` regime. REWARD-ONLY: a standard is
+  listed as conformant ONLY where a live probe returned evidence at the location named. Standards
+  in the regime with no evidence are recorded as not_found rather than omitted, so the absence is
+  legible. Nothing here is inferred from a prose claim on a web page.
+provider: University of Bristol
+providerId: university-of-bristol
+conformant:
+  - standard: oai-pmh
+    name: OpenArchives Initiative Protocol for Metadata Harvesting 2.0
+    x-operator: institution
+    endpoint: https://research-information.bris.ac.uk/ws/oai
+    evidence:
+      - url: https://research-information.bris.ac.uk/ws/oai?verb=ListMetadataFormats
+        status: 200
+        detail: >-
+          OAI-PMH 2.0 XML in the http://www.openarchives.org/OAI/2.0/ namespace listing seven
+          supported metadataPrefix values (mods, qdc, oai_dc, oai_cerif_openaire, xmetadiss,
+          nl_didl, uketd_dc).
+      - url: https://research-information.bris.ac.uk/ws/oai?verb=ListSets
+        status: 200
+        detail: 3,878 sets returned, including the seven OpenAIRE CRIS sets.
+      - url: https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_dc
+        status: 200
+        detail: 100 records with a resumptionToken advertising completeListSize="590974".
+    partial: true
+    partial_reason: >-
+      The mandatory Identify verb returns HTTP 500 with an HTML page (probed 2026-08-30), so the
+      repository does not satisfy the OAI-PMH 2.0 requirement to describe itself. Five of the six
+      verbs answer correctly.
+  - standard: saml
+    name: SAML 2.0
+    x-operator: institution
+    endpoint: https://idp.bris.ac.uk/idp/shibboleth
+    evidence:
+      - url: https://idp.bris.ac.uk/idp/shibboleth
+        status: 200
+        detail: >-
+          5,990 bytes of application/xml SAML 2.0 metadata served anonymously; entityID
+          https://idp.bris.ac.uk/shibboleth with IDPSSODescriptor and AttributeAuthorityDescriptor
+          roles and SAML2 Redirect/POST/POST-SimpleSign SSO bindings.
+  - standard: shibboleth
+    name: Shibboleth Identity Provider
+    x-operator: institution
+    endpoint: https://idp.bris.ac.uk/idp/shibboleth
+    evidence:
+      - url: https://idp.bris.ac.uk/idp/shibboleth
+        status: 200
+        detail: >-
+          Shibboleth IdP endpoint layout (/idp/profile/Shibboleth/SSO and
+          /idp/profile/SAML2/{Redirect,POST,POST-SimpleSign}/SSO) served from the institution's own
+          host.
+      - url: https://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+        status: 200
+        note: >-
+          The federation aggregate is an 87.9 MB XML document; it was fetched in full on
+          2026-08-30 and the host then rate-limited further requests. Live, not dead.
+        detail: >-
+          Registered in the UK Access Management Federation as
+          https://idp.bris.ac.uk/shibboleth, OrganizationName "University of Bristol",
+          registrationAuthority http://ukfederation.org.uk, registrationInstant
+          2010-09-09T16:18:44Z, shibmd:Scope bris.ac.uk, asserting the REFEDS Research & Scholarship
+          entity category. A second, hide-from-discovery test IdP
+          (https://idp-dev.isys.bris.ac.uk/idp/shibboleth, registered 2016-11-15) and one
+          Bristol-owned SP (https://bristoluniversitypressdigital.com/saml/sp, registered
+          2022-01-26) are registered under the same organization.
+  - standard: datacite
+    name: DataCite DOI registration
+    x-operator: institution
+    evidence:
+      - url: https://api.datacite.org/clients?query=bristol
+        status: 200
+        detail: >-
+          DataCite client BL.BRISTOL, name "University of Bristol", member since 2012, described by
+          DataCite as "The data.bris Research Data Repository", registered url
+          https://data.bris.ac.uk/data/.
+      - url: https://api.datacite.org/dois?client-id=bl.bristol
+        status: 200
+        detail: >-
+          1,552 DOIs minted under the institution's own prefix 10.5523/bris, resolving to
+          data.bris.ac.uk dataset landing pages.
+not_found:
+  - standard: scim
+    detail: No SCIM 2.0 endpoint or metadata found on any institution host.
+  - standard: lti
+    detail: No LTI tool registration or platform configuration surface found publicly.
+  - standard: oneroster
+    detail: No OneRoster endpoint found; no public rostering surface.
+  - standard: ed-fi
+    detail: Ed-Fi is a US K-12/state-agency standard; no evidence and none expected for a UK university.
+  - standard: caliper
+    detail: No Caliper Analytics endpoint or event store found publicly.
+  - standard: qti
+    detail: No QTI assessment surface found publicly.
+  - standard: orcid
+    detail: >-
+      No ORCID identifier appeared in the OpenAIRE CERIF records harvested from the OAI-PMH
+      endpoint on 2026-08-30, and no public ORCID integration surface was found. Not claimed.
+  - standard: crossref
+    detail: >-
+      No Crossref member or deposit surface operated by the institution was found. Publisher DOIs
+      appearing in Bristol metadata belong to the publishers, not to Bristol.

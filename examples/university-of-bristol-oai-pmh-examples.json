@@ -1,0 +1,72 @@
+{
+  "generated": "2026-08-30",
+  "method": "probed",
+  "source": "https://research-information.bris.ac.uk/ws/oai",
+  "note": "Verbatim excerpts of live, unauthenticated responses observed on 2026-08-30. The University of Bristol publishes no example payloads; these were captured by API Evangelist from the endpoint itself. Long documents are truncated at the character count noted in each entry.",
+  "endpoint": "https://research-information.bris.ac.uk/ws/oai",
+  "authentication": "none — every request below was made anonymously with no API key, cookie or token",
+  "examples": [
+    {
+      "name": "Identify — DEFECT: HTTP 500, not an OAI-PMH response",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=Identify",
+      "http_status": 500,
+      "content_type": "text/html;charset=ISO-8859-1",
+      "observation": "Returns a Pure HTML error page titled '500 Internal server error'. The mandatory OAI-PMH 2.0 self-description verb is unavailable on this deployment, so repositoryName, adminEmail, earliestDatestamp, deletedRecord policy and granularity cannot be read from the repository.",
+      "body_excerpt": "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n    <title>500 Internal server error</title>"
+    },
+    {
+      "name": "ListMetadataFormats",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListMetadataFormats",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "truncated_at": 1600,
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:04:50Z</responseDate>\n  <request verb=\"ListMetadataFormats\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListMetadataFormats>\n    <metadataFormat>\n      <metadataPrefix>mods</metadataPrefix>\n      <schema>http://www.loc.gov/mods/v3/mods-3-8.xsd</schema>\n      <metadataNamespace>http://www.loc.gov/mods/v3</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>qdc</metadataPrefix>\n      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>\n      <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_dc</metadataPrefix>\n      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>\n      <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_cerif_openaire</metadataPrefix>\n      <schema>https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd</schema>\n      <metadataNamespace>https://www.openaire.eu/cerif-profile/1.2/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>xmetadiss</metadataPrefix>\n"
+    },
+    {
+      "name": "ListSets",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListSets",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "observed_set_count": 3878,
+      "truncated_at": 1600,
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:04:50Z</responseDate>\n  <request verb=\"ListSets\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListSets>\n    <set>\n      <setSpec>openaire_cris_publications</setSpec>\n      <setName>OpenAIRE_CRIS_publications</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_patents</setSpec>\n      <setName>OpenAIRE_CRIS_patents</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_persons</setSpec>\n      <setName>OpenAIRE_CRIS_persons</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_orgunits</setSpec>\n      <setName>OpenAIRE_CRIS_orgunits</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_events</setSpec>\n      <setName>OpenAIRE_CRIS_events</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_equipments</setSpec>\n      <setName>OpenAIRE_CRIS_equipments</setName>\n    </set>\n    <set>\n      <setSpec>openaire_cris_products</setSpec>\n      <setName>OpenAIRE_CRIS_products</setName>\n    </set>\n    <set>\n      <setSpec>persons:all</setSpec>\n      <setName>PURE Persons</setName>\n    </set>\n    <set>\n      <setSpec>publications:all</setSpec>\n      <setName>PURE publications</setName>\n    </set>\n    <set>\n      <setSpec>publications:withFiles</setSpec>\n   "
+    },
+    {
+      "name": "ListIdentifiers (oai_dc)",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListIdentifiers&metadataPrefix=oai_dc",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "observed_complete_list_size": 590974,
+      "observed_page_size": 100,
+      "truncated_at": 1600,
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:04:51Z</responseDate>\n  <request metadataPrefix=\"oai_dc\" verb=\"ListIdentifiers\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListIdentifiers>\n    <header>\n      <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9</identifier>\n      <datestamp>2025-10-30T20:09:01Z</datestamp>\n      <setSpec>openaire_cris_publications</setSpec>\n    </header>\n    <header>\n      <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/91fda0b7-bd52-42fe-82e4-70f6c5e2a737</identifier>\n      <datestamp>2019-07-12T21:51:45Z</datestamp>\n      <setSpec>openaire_cris_publications</setSpec>\n    </header>\n    <header>\n      <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/2c8cefbf-1f8c-4fcd-974f-2eb05d2ee255</identifier>\n      <datestamp>2019-07-12T21:51:45Z</datestamp>\n      <setSpec>openaire_cris_publications</setSpec>\n    </header>\n    <header>\n      <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/4d9e2dc2-c399-47bb-8fbc-3aa9f15de6e2</identifier>\n      <datestamp>2025-10-30T20:10:47Z</datestamp>\n      <setSpec>openaire_cris_publications</setSpec>\n    </header>\n    <hea"
+    },
+    {
+      "name": "ListRecords (oai_dc)",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_dc",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "observed_complete_list_size": 590974,
+      "observed_page_size": 100,
+      "truncated_at": 1600,
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:04:52Z</responseDate>\n  <request metadataPrefix=\"oai_dc\" verb=\"ListRecords\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListRecords>\n    <record>\n      <header>\n        <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9</identifier>\n        <datestamp>2025-10-30T20:09:01Z</datestamp>\n        <setSpec>openaire_cris_publications</setSpec>\n      </header>\n      <metadata>\n        <oai_dc:dc xmlns:dct=\"http://purl.org/dc/terms/\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n          <dc:title xml:lang=\"und\">L'epopee des mammiferes</dc:title>\n          <dc:title xml:lang=\"eng\">L'epopee des mammiferes</dc:title>\n          <dc:creator>Benton, MJ</dc:creator>\n          <dc:publisher>Edimages, Paris</dc:publisher>\n          <dc:date>1991</dc:date>\n          <dc:type>info:eu-repo/semantics/book</dc:type>\n          <dc:identifier>https://research-information.bris.ac.uk/en/publications/8f9e7938-b6d4-4a"
+    },
+    {
+      "name": "ListRecords (oai_cerif_openaire, openaire_cris_publications)",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_cerif_openaire&set=openaire_cris_publications",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "truncated_at": 1600,
+      "observation": "OpenAIRE CERIF 1.2 profile records: cerif:Publication with Title, PublicationDate, Authors/Person, Publishers/OrgUnit, ISBN, Handle, URL. No ORCID and no DOI element appeared on the first page.",
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:11:37Z</responseDate>\n  <request metadataPrefix=\"oai_cerif_openaire\" set=\"openaire_cris_publications\" verb=\"ListRecords\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListRecords>\n    <record>\n      <header>\n        <identifier>oai:research-information.bris.ac.uk:openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9</identifier>\n        <datestamp>2025-10-30T20:09:01Z</datestamp>\n        <setSpec>openaire_cris_publications</setSpec>\n      </header>\n      <metadata>\n        <cerif:Publication xmlns:sc=\"https://www.openaire.eu/cerif-profile/vocab/OpenAIRE_Service_Compatibility\" xmlns:ar=\"http://purl.org/coar/access_right\" xmlns:pubt=\"https://www.openaire.eu/cerif-profile/vocab/COAR_Publication_Types\" xmlns:prot=\"https://www.openaire.eu/cerif-profile/vocab/COAR_Product_Types\" xmlns:funt=\"https://www.openaire.eu/cerif-profile/vocab/OpenAIRE_Funding_Types\" xmlns:patt=\"https://www.openaire.eu/cerif-profile/vocab/COAR_Patent_Types\" xmlns:cerif=\"https://www.openaire.eu/cerif-profile/1.2/\" id=\"openaire_cris_publications/8f9e7938-b6d4-4aa4-8a5e-6acccbe922a9\">\n          <pubt:Type xmlns:pure=\"https://pure.elsevier.com/schema/extensions/oai_cerif_openaire\" pure:publicationCa"
+    },
+    {
+      "name": "ListRecords (oai_cerif_openaire, openaire_cris_persons) — DEFECT: empty first page",
+      "request": "https://research-information.bris.ac.uk/ws/oai?verb=ListRecords&metadataPrefix=oai_cerif_openaire&set=openaire_cris_persons",
+      "http_status": 200,
+      "content_type": "text/xml",
+      "observation": "200 with an EMPTY <ListRecords> containing only a resumptionToken advertising completeListSize=9750 — a first page with zero records.",
+      "body_excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd\">\n  <responseDate>2026-08-30T21:11:17Z</responseDate>\n  <request metadataPrefix=\"oai_cerif_openaire\" set=\"openaire_cris_persons\" verb=\"ListRecords\">https://research-information.bris.ac.uk/ws/oai</request>\n  <ListRecords>\n    <resumptionToken cursor=\"0\" completeListSize=\"9750\">oai_cerif_openaire/9750/496378582/100/1/0/openaire_cris_persons/x/x</resumptionToken>\n  </ListRecords>\n</OAI-PMH>"
+    }
+  ]
+}
