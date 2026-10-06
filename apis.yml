@@ -62,7 +62,7 @@ tags:
   - Identity Federation
   - Open Data
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: university-of-bristol:idp-shibboleth
@@ -216,6 +216,8 @@ apis:
   - type: Documentation
     url: https://www.openarchives.org/OAI/openarchivesprotocol.html
 common:
+  - url: https://www.bristol.ac.uk/news/
+    type: Blog
   - type: Website
     url: https://www.bristol.ac.uk/
   - type: Portal
